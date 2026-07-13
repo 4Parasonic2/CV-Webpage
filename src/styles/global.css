@@ -1,0 +1,198 @@
+/* ============================================================
+   GLOBAL STYLES
+   ------------------------------------------------------------
+   Base element styling, the starfield background, shared
+   utility classes (container, buttons, section titles) and
+   the scroll-reveal animation used across pages.
+   ============================================================ */
+
+@import './variables.css';
+
+/* ---- Reset: predictable sizing everywhere ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Smooth scrolling when clicking in-page anchors */
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Starfield background ----
+   Two fixed layers of tiny radial-gradient "stars" behind all
+   content. The second layer slowly fades in and out to create
+   a subtle twinkle without any JavaScript. */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none; /* never block clicks */
+  background-image:
+    radial-gradient(1px 1px at 25px 45px, #ffffffaa 50%, transparent 50%),
+    radial-gradient(1px 1px at 170px 120px, #ffffff66 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 320px 60px, #ffffff88 50%, transparent 50%),
+    radial-gradient(1px 1px at 420px 200px, #ffffff55 50%, transparent 50%),
+    radial-gradient(1px 1px at 90px 260px, #ffffff77 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 520px 310px, #ffffff66 50%, transparent 50%);
+  background-size: 600px 380px; /* pattern tiles across the screen */
+}
+
+.starfield::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 80px 100px, #d9b8ff88 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 240px 280px, #ffffff77 50%, transparent 50%),
+    radial-gradient(1px 1px at 460px 140px, #eed7ae66 50%, transparent 50%),
+    radial-gradient(1px 1px at 360px 340px, #ffffff55 50%, transparent 50%);
+  background-size: 600px 380px;
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to   { opacity: 1; }
+}
+
+/* ---- Typography defaults ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--cream);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---- Layout helpers ---- */
+
+/* Centers page content and gives consistent side padding */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* Standard vertical rhythm for each page */
+.page {
+  padding: var(--space-6) 0;
+  min-height: calc(100vh - 200px); /* keeps footer near the bottom on short pages */
+}
+
+/* Section heading with a small accent underline */
+.section-title {
+  font-size: 2rem;
+  margin-bottom: var(--space-5);
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: var(--space-2);
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--cream));
+}
+
+/* Dimmed lead paragraph under titles */
+.section-subtitle {
+  color: var(--text-muted);
+  max-width: 640px;
+  margin-top: calc(-1 * var(--space-4));
+  margin-bottom: var(--space-5);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition),
+    background-color var(--transition), color var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px); /* gentle lift on hover */
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+  color: #fff;
+}
+
+.btn-primary:hover {
+  box-shadow: var(--glow-accent);
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  border-color: var(--cream);
+}
+
+.btn-outline:hover {
+  background: var(--cream);
+  color: var(--bg);
+}
+
+/* ---- Scroll-reveal animation ----
+   Elements start slightly lower and transparent; when the
+   useReveal hook sees them enter the viewport it adds
+   .is-visible, which animates them into place. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect users who turn off animations in their OS settings */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .starfield::after {
+    animation: none;
+  }
+}

@@ -1,0 +1,50 @@
+/* ============================================================
+   DESIGN TOKENS
+   ------------------------------------------------------------
+   Every color, font and spacing value used across the site is
+   defined here as a CSS custom property ("CSS variable").
+   To re-theme the whole website, you only edit this file.
+   ============================================================ */
+
+:root {
+  /* ---- Colors: background layers (dark navy/near-black) ---- */
+  --bg: #0b0a12;              /* page background            */
+  --bg-elevated: #14121f;     /* cards, navbar              */
+  --bg-elevated-2: #1b1830;   /* hovered cards, tags        */
+
+  /* ---- Colors: brand accents ---- */
+  --accent: #b45eff;          /* primary purple/violet      */
+  --accent-strong: #9333ea;   /* deeper purple for buttons  */
+  --accent-soft: rgba(180, 94, 255, 0.14); /* translucent purple for glows/tags */
+  --cream: #eed7ae;           /* warm cream secondary accent */
+
+  /* ---- Colors: text ---- */
+  --text: #e9e6f2;            /* main body text             */
+  --text-muted: #9a93b0;      /* secondary/dimmed text      */
+
+  /* ---- Colors: borders ---- */
+  --border: rgba(180, 94, 255, 0.16);
+  --border-strong: rgba(180, 94, 255, 0.4);
+
+  /* ---- Typography ---- */
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* ---- Layout ---- */
+  --container-width: 1100px;  /* max content width          */
+  --radius: 16px;             /* card corner rounding       */
+  --radius-sm: 8px;           /* small elements (tags)      */
+
+  /* ---- Spacing scale (consistent gaps everywhere) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+
+  /* ---- Effects ---- */
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --glow-accent: 0 0 24px rgba(180, 94, 255, 0.35);
+  --transition: 0.25s ease;
+}

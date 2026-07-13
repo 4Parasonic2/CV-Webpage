@@ -1,0 +1,68 @@
+# ==============================================================
+# GITHUB PAGES AUTO-DEPLOY
+# --------------------------------------------------------------
+# This workflow runs on GitHub's servers every time you push to
+# the "main" branch. It:
+#   1. downloads your code,
+#   2. installs dependencies and builds the site (npm run build),
+#   3. publishes the resulting "dist" folder to GitHub Pages.
+#
+# You never have to build or upload anything manually — pushing
+# your code IS deploying.
+# ==============================================================
+name: Deploy to GitHub Pages
+
+on:
+  # Run on every push to main
+  push:
+    branches: [main]
+  # Also allow starting it manually from the Actions tab
+  workflow_dispatch:
+
+# Permissions the workflow needs to publish to Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If you push twice quickly, cancel the older run
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        # "npm ci" is like "npm install" but uses the exact versions
+        # from package-lock.json — reproducible builds
+        run: npm ci
+
+      - name: Build the site
+        run: npm run build
+
+      - name: Upload the built site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

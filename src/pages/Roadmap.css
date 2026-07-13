@@ -1,0 +1,51 @@
+/* ============================================================
+   ROADMAP PAGE — the timeline container
+   ------------------------------------------------------------
+   The central "double line" is drawn with two thin gradient
+   stripes (::before and ::after) 6px apart, fading out at the
+   top and bottom.
+   ============================================================ */
+
+.timeline {
+  position: relative;
+  list-style: none;
+  padding: var(--space-4) 0;
+}
+
+/* Shared style for both lines of the double line */
+.timeline::before,
+.timeline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent) 6%,
+    var(--accent) 94%,
+    transparent
+  );
+  opacity: 0.55;
+}
+
+/* The two lines sit 3px either side of the exact center */
+.timeline::before {
+  left: calc(50% - 4px);
+}
+
+.timeline::after {
+  left: calc(50% + 2px);
+}
+
+/* ---- Mobile: move the double line to the left edge ---- */
+@media (max-width: 700px) {
+  .timeline::before {
+    left: 4px;
+  }
+
+  .timeline::after {
+    left: 10px;
+  }
+}

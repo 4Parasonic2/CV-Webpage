@@ -1,0 +1,11 @@
+/* ============================================================
+   PROJECTS PAGE
+   ============================================================ */
+
+.projects-grid {
+  display: grid;
+  /* auto-fill + minmax = responsive grid with no media queries:
+     as many 300px+ columns as fit, cards stretch to fill the row */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}

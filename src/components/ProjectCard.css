@@ -1,0 +1,94 @@
+/* ============================================================
+   PROJECT CARD
+   ============================================================ */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden; /* clips the image corners to the card radius */
+  transition: transform var(--transition), border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.project-card:hover {
+  transform: translateY(-4px); /* subtle lift */
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Screenshot / placeholder ---- */
+.project-image {
+  aspect-ratio: 16 / 9; /* consistent height across all cards */
+  background: var(--bg-elevated-2);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background:
+    radial-gradient(circle at 30% 30%, var(--accent-soft), transparent 60%),
+    var(--bg-elevated-2);
+}
+
+/* ---- Text content ---- */
+.project-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  flex: 1; /* stretches so links align at the bottom of every card */
+}
+
+.project-title {
+  font-size: 1.2rem;
+  color: var(--cream);
+}
+
+.project-description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+/* ---- Tech tags ---- */
+.project-tech {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.project-tech li {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+}
+
+/* ---- Links ---- */
+.project-links {
+  display: flex;
+  gap: var(--space-4);
+  font-weight: 600;
+  font-size: 0.9rem;
+}

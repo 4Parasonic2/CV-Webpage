@@ -1,0 +1,132 @@
+/* ============================================================
+   TIMELINE ITEM
+   ------------------------------------------------------------
+   The timeline is a <ul> (styled in Roadmap.css) with a central
+   double line. Each item is half-width and pushed to the left
+   or right; its dot is positioned back onto the center line.
+   ============================================================ */
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding-bottom: var(--space-5);
+}
+
+/* Alternating sides */
+.timeline-item.left {
+  left: 0;
+  padding-right: var(--space-6); /* gap between card and center line */
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+  padding-left: var(--space-6);
+}
+
+/* Slide in from the item's own side (overrides the default
+   .reveal translateY from global.css) */
+.timeline-item.left.reveal {
+  transform: translateX(-32px);
+}
+
+.timeline-item.right.reveal {
+  transform: translateX(32px);
+}
+
+.timeline-item.reveal.is-visible {
+  transform: translateX(0);
+}
+
+/* ---- Dot on the center line ---- */
+.timeline-dot {
+  position: absolute;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--accent);
+  box-shadow: var(--glow-accent);
+  z-index: 1;
+}
+
+/* Place the dot exactly on the center line for both sides
+   (half the dot width = 8px) */
+.timeline-item.left .timeline-dot {
+  right: -8px;
+}
+
+.timeline-item.right .timeline-dot {
+  left: -8px;
+}
+
+/* ---- Card ---- */
+.timeline-card {
+  display: inline-block;
+  text-align: left;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.timeline-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+
+.timeline-date {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  margin-bottom: var(--space-2);
+}
+
+.timeline-title {
+  font-size: 1.1rem;
+  color: var(--cream);
+}
+
+.timeline-place {
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-top: var(--space-1);
+}
+
+.timeline-details {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+
+/* ---- Mobile: single column, all cards right of the line ---- */
+@media (max-width: 700px) {
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    width: 100%;
+    left: 0;
+    padding-left: var(--space-5);
+    padding-right: 0;
+    text-align: left;
+  }
+
+  /* Center the dot on the left-edge double line (line center ≈ 8px) */
+  .timeline-item.left .timeline-dot,
+  .timeline-item.right .timeline-dot {
+    left: 0;
+    right: auto;
+  }
+
+  /* Slide in from the same side on mobile */
+  .timeline-item.left.reveal {
+    transform: translateX(32px);
+  }
+}
