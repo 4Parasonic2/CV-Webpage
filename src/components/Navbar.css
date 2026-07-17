@@ -3,11 +3,10 @@
    ============================================================ */
 
 .navbar {
-  position: sticky; /* stays at the top while scrolling */
+  position: sticky;
   top: 0;
   z-index: 10;
-  /* Semi-transparent dark bar with a frosted-glass blur effect */
-  background: rgba(11, 10, 18, 0.8);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
@@ -29,7 +28,7 @@
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.06em;
-  color: var(--cream);
+  color: var(--text);
 }
 
 .navbar-avatar {
@@ -59,7 +58,7 @@
 }
 
 .navbar-link:hover {
-  color: var(--cream);
+  color: var(--text);
 }
 
 /* Current page gets the accent color */

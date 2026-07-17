@@ -1,0 +1,113 @@
+.project-detail-back {
+  display: inline-block;
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+}
+
+.project-detail-header {
+  margin-bottom: var(--space-5);
+}
+
+.project-detail-header h1 {
+  font-size: 2.4rem;
+  margin-bottom: var(--space-2);
+}
+
+.project-detail-lead {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 720px;
+  margin-bottom: var(--space-3);
+}
+
+.project-detail-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+}
+
+.project-detail-cover {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: var(--space-5);
+}
+
+.project-detail-section {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.project-detail-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-3);
+  color: var(--text);
+}
+
+.project-detail-section p + p {
+  margin-top: var(--space-3);
+}
+
+.project-detail-section p {
+  color: var(--text-muted);
+}
+
+.project-detail-list {
+  list-style: disc inside;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Titled bullet groups (e.g. course core areas) */
+.project-detail-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.project-detail-group h3 {
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+
+.project-detail-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-elevated-2);
+}
+
+.project-detail-video iframe,
+.project-detail-video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.project-detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+
+.project-detail-gallery img {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.project-detail-gallery figcaption {
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+}

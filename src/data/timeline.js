@@ -12,54 +12,60 @@
  *   place   - company / school / context line
  *   details - 1-2 sentences describing the milestone
  */
-export const milestones = [
+/**
+ * CAREER ROADMAP DATA — dual track (studies + jobs).
+ *
+ * Two separate arrays render as two vertical lines on the Roadmap
+ * page: studies on the LEFT, jobs on the RIGHT. Each entry has a
+ * start and end year. A missing `end` (or end: 'present') means the
+ * entry is still ongoing — its line runs to the bottom of the page.
+ * Entries whose `end` is set have their line stop at the end year,
+ * which naturally visualises career gaps.
+ *
+ * Keep both arrays ordered NEWEST FIRST (largest start year first).
+ */
+export const studies = [
   {
-    date: '2026',
-    title: 'Today — and what comes next',
-    place: 'Looking ahead',
+    start: 2021,
+    end: 2024,
+    title: 'BSc Computer Science',
+    place: 'University of Somewhere',
     details:
-      'Deepening my React expertise and exploring TypeScript. Open to new opportunities and collaborations.',
+      'Focused on web technologies and human-computer interaction. Thesis on progressive web applications.',
   },
   {
-    date: '2023',
+    start: 2017,
+    end: 2021,
+    title: 'High school diploma',
+    place: 'Somewhere High',
+    details:
+      'Wrote my first line of HTML for a school project — the spark that led to everything since.',
+  },
+]
+
+export const jobs = [
+  {
+    start: 2024,
+    end: 'present',
     title: 'Frontend Developer',
     place: 'Acme Web Studio',
     details:
-      'Promoted to a full frontend role. Leading the UI work on client projects and mentoring an intern.',
+      'Leading the UI work on client projects, building design systems, and mentoring junior developers.',
   },
   {
-    date: '2021',
-    title: 'First developer job',
+    start: 2022,
+    end: 2024,
+    title: 'Junior Web Developer',
     place: 'Startup Inc.',
     details:
-      'Joined as a junior web developer right after graduation. Learned professional workflows: code review, agile, testing.',
+      'First developer job. Learned professional workflows: code review, agile, testing, and shipping to production.',
   },
   {
-    date: '2021',
-    title: 'Graduated university',
-    place: 'University of Somewhere',
-    details:
-      'Finished my BSc in Computer Science with a thesis on progressive web applications.',
-  },
-  {
-    date: '2020',
-    title: 'First internship',
+    start: 2021,
+    end: 2021,
+    title: 'Summer internship',
     place: 'Local Agency',
     details:
-      'Spent a summer fixing bugs and shipping small features — my first taste of real-world code.',
-  },
-  {
-    date: '2018',
-    title: 'Started university',
-    place: 'University of Somewhere',
-    details:
-      'Began studying Computer Science and quickly discovered a love for building things for the web.',
-  },
-  {
-    date: '2016',
-    title: 'Wrote my first line of code',
-    place: 'High school',
-    details:
-      'A simple HTML page for a school project sparked the curiosity that led to everything above.',
+      'A short summer fixing bugs and shipping small features — my first taste of real-world code.',
   },
 ]

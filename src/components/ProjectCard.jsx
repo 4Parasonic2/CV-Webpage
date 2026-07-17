@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import useReveal from '../hooks/useReveal.js'
 import './ProjectCard.css'
 
@@ -13,7 +14,7 @@ export default function ProjectCard({ project }) {
     <article className="project-card reveal" ref={ref}>
       {/* Screenshot area: shows the image if one is set, otherwise a
           decorative placeholder with the project's initials */}
-      <div className="project-image">
+      <Link to={`/projects/${project.slug}`} className="project-image">
         {project.image ? (
           <img src={project.image} alt={`Screenshot of ${project.title}`} />
         ) : (
@@ -25,10 +26,12 @@ export default function ProjectCard({ project }) {
               .slice(0, 3)}
           </div>
         )}
-      </div>
+      </Link>
 
       <div className="project-body">
-        <h3 className="project-title">{project.title}</h3>
+        <h3 className="project-title">
+          <Link to={`/projects/${project.slug}`}>{project.title}</Link>
+        </h3>
         <p className="project-description">{project.description}</p>
 
         {/* Technology tags */}
@@ -39,10 +42,12 @@ export default function ProjectCard({ project }) {
         </ul>
 
         <div className="project-links">
-          <a href={project.github} target="_blank" rel="noreferrer">
-            GitHub →
-          </a>
-          {/* Demo link only renders when one exists */}
+          <Link to={`/projects/${project.slug}`}>Read more →</Link>
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noreferrer">
+              GitHub →
+            </a>
+          )}
           {project.demo && (
             <a href={project.demo} target="_blank" rel="noreferrer">
               Live Demo →

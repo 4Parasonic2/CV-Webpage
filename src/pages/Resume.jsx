@@ -1,113 +1,48 @@
-import useReveal from '../hooks/useReveal.js'
-import {
-  education,
-  experience,
-  skills,
-  certifications,
-  languages,
-} from '../data/resume.js'
 import './Resume.css'
 
 /**
- * Small wrapper that gives every resume section the same structure
- * (heading + content) and its own scroll-reveal animation.
+ * Resume — displays the CV PDF directly, full-page.
+ *
+ * The PDF file lives at /public/cv.pdf. Every modern browser renders
+ * PDFs natively inside an <iframe>, so no extra library is needed.
+ * The "Download" button uses the HTML `download` attribute to save
+ * the file instead of opening it in a new tab.
+ *
+ * To swap the resume: drop your new file into `public/` and name it
+ * `cv.pdf` (or update the CV_URL constant below).
  */
-function Section({ title, children }) {
-  const ref = useReveal()
-  return (
-    <section className="resume-section reveal" ref={ref}>
-      <h2>{title}</h2>
-      {children}
-    </section>
-  )
-}
+const CV_URL = 'cv.pdf'
 
-/**
- * CV / Resume — professional details in stacked sections.
- * All content comes from src/data/resume.js.
- */
 export default function Resume() {
   return (
-    <div className="page container resume">
+    <div className="page container resume-page">
       <div className="resume-header">
         <div>
           <h1 className="section-title">CV / Resume</h1>
           <p className="section-subtitle">
-            My education, experience and skills at a glance — or grab the PDF
-            version for printing.
+            My full CV, embedded below. Use the download button to save a copy.
           </p>
         </div>
-        {/* The "download" attribute makes browsers save the file
-            instead of opening it. The file lives in /public. */}
-        <a href="cv.pdf" download className="btn btn-primary resume-download">
+        <a href={CV_URL} download className="btn btn-primary resume-download">
           Download CV (PDF)
         </a>
       </div>
 
-      <Section title="Work Experience">
-        {experience.map((job) => (
-          <div className="resume-entry" key={job.role + job.period}>
-            <div className="resume-entry-header">
-              <h3>{job.role}</h3>
-              <span className="resume-period">{job.period}</span>
-            </div>
-            <p className="resume-org">{job.company}</p>
-            <p className="resume-details">{job.details}</p>
-          </div>
-        ))}
-      </Section>
+      <div className="resume-viewer">
+        <iframe
+          src={`${CV_URL}#view=FitH`}
+          title="Attila Kiri — CV"
+          aria-label="CV document"
+        />
+      </div>
 
-      <Section title="Education">
-        {education.map((item) => (
-          <div className="resume-entry" key={item.degree}>
-            <div className="resume-entry-header">
-              <h3>{item.degree}</h3>
-              <span className="resume-period">{item.period}</span>
-            </div>
-            <p className="resume-org">{item.school}</p>
-            <p className="resume-details">{item.details}</p>
-          </div>
-        ))}
-      </Section>
-
-      <Section title="Skills">
-        <div className="skills-groups">
-          {skills.map((group) => (
-            <div key={group.group}>
-              <h3 className="skills-group-name">{group.group}</h3>
-              <ul className="skills-tags">
-                {group.items.map((skill) => (
-                  <li key={skill}>{skill}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section title="Certifications">
-        <ul className="cert-list">
-          {certifications.map((cert) => (
-            <li key={cert.name}>
-              <span className="cert-name">{cert.name}</span>
-              <span className="cert-meta">
-                {cert.issuer} · {cert.year}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section title="Languages">
-        <ul className="lang-list">
-          {languages.map((lang) => (
-            <li key={lang.name}>
-              <span className="lang-name">{lang.name}</span>
-              <span className="lang-level">{lang.level}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
+      <p className="resume-fallback">
+        Can&rsquo;t see the PDF?{' '}
+        <a href={CV_URL} target="_blank" rel="noreferrer">
+          Open it in a new tab
+        </a>
+        .
+      </p>
     </div>
   )
 }

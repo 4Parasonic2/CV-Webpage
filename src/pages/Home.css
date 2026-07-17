@@ -1,29 +1,102 @@
 /* ============================================================
-   HOME PAGE (hero + about)
+   HOME PAGE (hero + highlights + about)
+   ------------------------------------------------------------
+   A gradient-forward "Lovable-style" landing: glowing orbs,
+   a gradient headline, a glass profile frame and glass cards.
+   Everything uses theme tokens so it adapts to light/dark.
    ============================================================ */
 
+.home {
+  position: relative;
+  overflow: hidden; /* keep the glowing orbs from causing scrollbars */
+}
+
+/* ---- Floating gradient orbs behind the hero ---- */
+.home-orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+}
+
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -80px;
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+  animation: float 14s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 360px;
+  height: 360px;
+  top: 120px;
+  right: -100px;
+  background: radial-gradient(circle, var(--accent-2), transparent 70%);
+  animation: float 18s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, 30px); }
+}
+
+/* ---- Hero layout ---- */
 .hero {
+  position: relative;
+  z-index: 1; /* above the orbs */
   display: grid;
-  grid-template-columns: 1.2fr 1fr; /* text slightly wider than photo */
+  grid-template-columns: 1.2fr 1fr;
   align-items: center;
   gap: var(--space-6);
   padding-top: var(--space-6);
   padding-bottom: var(--space-6);
 }
 
+/* ---- Status pill ---- */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+  backdrop-filter: blur(8px);
+  margin-bottom: var(--space-4);
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e; /* green "online" dot */
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+}
+
 /* ---- Left column: text ---- */
 .hero-greeting {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: var(--cream);
+  color: var(--text-muted);
 }
 
-/* Gentle waving-hand animation */
 .hero-wave {
   display: inline-block;
   animation: wave 2s ease-in-out infinite;
-  transform-origin: 70% 70%; /* rotate around the "wrist" */
+  transform-origin: 70% 70%;
 }
 
 @keyframes wave {
@@ -36,22 +109,34 @@
 }
 
 .hero-title {
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   font-weight: 800;
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
+  letter-spacing: -0.02em;
 }
 
 .hero-name {
-  /* Purple gradient text, like the reference design */
-  background: linear-gradient(90deg, var(--accent), #7c5cff);
+  /* Multi-stop gradient text — the signature "Lovable" look */
+  background: linear-gradient(
+    120deg,
+    var(--accent-strong),
+    var(--accent),
+    var(--accent-2)
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
 }
 
 .hero-role {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: var(--accent);
   margin-top: var(--space-2);
@@ -59,7 +144,7 @@
 
 .hero-intro {
   color: var(--text-muted);
-  max-width: 480px;
+  max-width: 500px;
   margin-top: var(--space-4);
 }
 
@@ -70,23 +155,106 @@
   flex-wrap: wrap;
 }
 
-/* ---- Right column: photo ---- */
+/* ---- Right column: photo with gradient ring + glow ---- */
 .hero-photo {
+  position: relative;
   display: flex;
   justify-content: center;
 }
 
-.hero-photo img {
+.hero-photo-frame {
+  position: relative;
+  z-index: 1;
   width: min(340px, 100%);
-  aspect-ratio: 1;        /* always a perfect circle */
-  object-fit: cover;      /* crops non-square photos nicely */
+  aspect-ratio: 1;
   border-radius: 50%;
-  border: 3px solid var(--border-strong);
-  box-shadow: var(--glow-accent);
+  padding: 6px; /* thickness of the gradient ring */
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: var(--shadow-card);
+}
+
+.hero-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--bg); /* gap between photo and ring */
+}
+
+/* Soft colored glow pulsing behind the photo */
+.hero-photo-glow {
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+  filter: blur(50px);
+  opacity: 0.5;
+  z-index: 0;
+  animation: pulse 5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.08); }
+}
+
+/* ---- "What I do" highlight cards ---- */
+.highlights {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.highlight-card {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-elevated) 75%, transparent);
+  backdrop-filter: blur(8px);
+  transition: transform var(--transition), border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+
+.highlight-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  margin-bottom: var(--space-3);
+}
+
+.highlight-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.highlight-title {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-2);
+}
+
+.highlight-text {
+  color: var(--text-muted);
+  font-size: 0.92rem;
 }
 
 /* ---- About section ---- */
 .about {
+  position: relative;
+  z-index: 1;
   padding-top: var(--space-6);
 }
 
@@ -95,7 +263,14 @@
   max-width: 720px;
 }
 
-/* ---- Mobile: stack the hero vertically, photo on top ---- */
+/* ---- Tablet: highlights become a single column ---- */
+@media (max-width: 900px) {
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Mobile: stack the hero, photo on top ---- */
 @media (max-width: 800px) {
   .hero {
     grid-template-columns: 1fr;
@@ -103,16 +278,27 @@
     text-align: center;
   }
 
+  .hero-badge {
+    /* center the pill when the column is centered */
+    align-self: center;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .hero-photo {
     order: -1; /* photo above the text */
   }
 
-  .hero-photo img {
-    width: min(220px, 60vw);
+  .hero-photo-frame {
+    width: min(230px, 62vw);
   }
 
   .hero-title {
-    font-size: 2.4rem;
+    font-size: 2.5rem;
   }
 
   .hero-intro {

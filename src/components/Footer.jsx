@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-inner">
-        <p>© {year} Jane Doe. Built with React.</p>
+        <p>© {year} Attila Kiri. Built with React.</p>
         <div className="footer-links">
           <a href="https://github.com/your-username" target="_blank" rel="noreferrer">
             GitHub
@@ -15,7 +15,7 @@ export default function Footer() {
           <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noreferrer">
             LinkedIn
           </a>
-          <a href="mailto:jane.doe@example.com">Email</a>
+          <a href="mailto:you@example.com">Email</a>
         </div>
       </div>
     </footer>

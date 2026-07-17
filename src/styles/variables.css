@@ -6,36 +6,77 @@
    To re-theme the whole website, you only edit this file.
    ============================================================ */
 
+/* ------------------------------------------------------------
+   Two themes: light (default) and dark.
+   Toggle by setting `data-theme="dark"` on <html>.
+   Everything else in the app reads these tokens, so no
+   component ever needs to know which theme is active.
+   ------------------------------------------------------------ */
+
+:root,
+:root[data-theme='light'] {
+  /* Surfaces */
+  --bg: #f8fafc;              /* page background            */
+  --bg-elevated: #ffffff;     /* cards, navbar              */
+  --bg-elevated-2: #eef4fb;   /* hovered cards, tags        */
+
+  /* Brand — modern azure with an indigo companion */
+  --accent: #0ea5e9;          /* primary blue                */
+  --accent-strong: #0369a1;   /* deeper blue for buttons     */
+  --accent-2: #6366f1;        /* indigo, for gradients       */
+  --accent-soft: rgba(14, 165, 233, 0.12);
+  --cream: #0f172a;           /* strong heading color        */
+
+  /* Text */
+  --text: #0f172a;
+  --text-muted: #475569;
+
+  /* Borders */
+  --border: rgba(15, 23, 42, 0.10);
+  --border-strong: rgba(3, 105, 161, 0.45);
+
+  /* Effects */
+  --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --glow-accent: 0 0 24px rgba(14, 165, 233, 0.22);
+}
+
+:root[data-theme='dark'] {
+  --bg: #0f172a;
+  --bg-elevated: #111f36;
+  --bg-elevated-2: #17243d;
+
+  --accent: #38bdf8;
+  --accent-strong: #0ea5e9;
+  --accent-2: #818cf8;
+  --accent-soft: rgba(56, 189, 248, 0.14);
+  --cream: #f1f5f9;
+
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+
+  --border: rgba(148, 163, 184, 0.18);
+  --border-strong: rgba(56, 189, 248, 0.45);
+
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --glow-accent: 0 0 24px rgba(56, 189, 248, 0.35);
+}
+
 :root {
-  /* ---- Colors: background layers (dark navy/near-black) ---- */
-  --bg: #0b0a12;              /* page background            */
-  --bg-elevated: #14121f;     /* cards, navbar              */
-  --bg-elevated-2: #1b1830;   /* hovered cards, tags        */
-
-  /* ---- Colors: brand accents ---- */
-  --accent: #b45eff;          /* primary purple/violet      */
-  --accent-strong: #9333ea;   /* deeper purple for buttons  */
-  --accent-soft: rgba(180, 94, 255, 0.14); /* translucent purple for glows/tags */
-  --cream: #eed7ae;           /* warm cream secondary accent */
-
-  /* ---- Colors: text ---- */
-  --text: #e9e6f2;            /* main body text             */
-  --text-muted: #9a93b0;      /* secondary/dimmed text      */
-
-  /* ---- Colors: borders ---- */
-  --border: rgba(180, 94, 255, 0.16);
-  --border-strong: rgba(180, 94, 255, 0.4);
-
-  /* ---- Typography ---- */
-  --font-heading: 'Poppins', system-ui, sans-serif;
+  /* Typography */
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
-  /* ---- Layout ---- */
-  --container-width: 1100px;  /* max content width          */
-  --radius: 16px;             /* card corner rounding       */
-  --radius-sm: 8px;           /* small elements (tags)      */
+  /* A second accent used for multi-stop gradients (hero text, glows).
+     Defined per-theme just below so it adapts to light/dark. */
+  --accent-2: #6366f1;
 
-  /* ---- Spacing scale (consistent gaps everywhere) ---- */
+  /* Layout */
+  --container-width: 1100px;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+
+  /* Spacing scale */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 1rem;
@@ -43,8 +84,5 @@
   --space-5: 2.5rem;
   --space-6: 4rem;
 
-  /* ---- Effects ---- */
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --glow-accent: 0 0 24px rgba(180, 94, 255, 0.35);
   --transition: 0.25s ease;
 }

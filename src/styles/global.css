@@ -29,43 +29,21 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition), color var(--transition);
 }
 
-/* ---- Starfield background ----
-   Two fixed layers of tiny radial-gradient "stars" behind all
-   content. The second layer slowly fades in and out to create
-   a subtle twinkle without any JavaScript. */
+/* ---- Ambient background ----
+   A soft radial wash behind content — subtle in light mode,
+   a little more atmospheric in dark mode. No animation, so it
+   stays professional. */
 .starfield {
   position: fixed;
   inset: 0;
   z-index: -1;
-  pointer-events: none; /* never block clicks */
-  background-image:
-    radial-gradient(1px 1px at 25px 45px, #ffffffaa 50%, transparent 50%),
-    radial-gradient(1px 1px at 170px 120px, #ffffff66 50%, transparent 50%),
-    radial-gradient(1.5px 1.5px at 320px 60px, #ffffff88 50%, transparent 50%),
-    radial-gradient(1px 1px at 420px 200px, #ffffff55 50%, transparent 50%),
-    radial-gradient(1px 1px at 90px 260px, #ffffff77 50%, transparent 50%),
-    radial-gradient(1.5px 1.5px at 520px 310px, #ffffff66 50%, transparent 50%);
-  background-size: 600px 380px; /* pattern tiles across the screen */
-}
-
-.starfield::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 80px 100px, #d9b8ff88 50%, transparent 50%),
-    radial-gradient(1.5px 1.5px at 240px 280px, #ffffff77 50%, transparent 50%),
-    radial-gradient(1px 1px at 460px 140px, #eed7ae66 50%, transparent 50%),
-    radial-gradient(1px 1px at 360px 340px, #ffffff55 50%, transparent 50%);
-  background-size: 600px 380px;
-  animation: twinkle 5s ease-in-out infinite alternate;
-}
-
-@keyframes twinkle {
-  from { opacity: 0.2; }
-  to   { opacity: 1; }
+  pointer-events: none;
+  background:
+    radial-gradient(1000px 600px at 15% -10%, var(--accent-soft), transparent 60%),
+    radial-gradient(800px 500px at 100% 10%, var(--accent-soft), transparent 65%);
 }
 
 /* ---- Typography defaults ---- */
@@ -191,8 +169,5 @@ img {
     transition: none;
     opacity: 1;
     transform: none;
-  }
-  .starfield::after {
-    animation: none;
   }
 }

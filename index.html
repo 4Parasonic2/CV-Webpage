@@ -6,15 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Personal portfolio and CV of Jane Doe — Frontend Developer."
+      content="Personal portfolio, CV and career roadmap of Attila Kiri."
     />
-    <title>Attila Kiri | Portfolio</title>
+    <title>Attila Kiri — Portfolio & CV</title>
 
-    <!-- Google Fonts: Poppins for headings, Inter for body text -->
+    <!-- Set the initial theme BEFORE React mounts so there's no flash.
+         Defaults to light; remembers the user's last choice. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          document.documentElement.setAttribute(
+            'data-theme',
+            saved === 'dark' ? 'dark' : 'light'
+          );
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+
+    <!-- Google Fonts: Space Grotesk for headings, Inter for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>

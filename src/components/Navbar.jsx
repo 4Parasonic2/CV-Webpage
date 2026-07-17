@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import './Navbar.css'
+import ThemeToggle from './ThemeToggle.jsx'
 
 /**
  * Small inline SVG icons for the nav links.
@@ -55,7 +56,7 @@ export default function Navbar() {
         {/* Brand: avatar + name, links back to Home */}
         <NavLink to="/" className="navbar-brand">
           <img src="profile.svg" alt="" className="navbar-avatar" />
-          <span>JANE DOE</span>
+          <span>ATTILA KIRI</span>
         </NavLink>
 
         <nav className="navbar-links" aria-label="Main navigation">
@@ -73,6 +74,7 @@ export default function Navbar() {
               <span>{link.label}</span>
             </NavLink>
           ))}
+          <ThemeToggle />
         </nav>
       </div>
     </header>

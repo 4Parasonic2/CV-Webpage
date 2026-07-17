@@ -21,6 +21,7 @@
 
 /* ---- Screenshot / placeholder ---- */
 .project-image {
+  display: block; /* it's a <Link> (inline <a>): make it a block so aspect-ratio applies */
   aspect-ratio: 16 / 9; /* consistent height across all cards */
   background: var(--bg-elevated-2);
 }
@@ -58,7 +59,15 @@
 
 .project-title {
   font-size: 1.2rem;
-  color: var(--cream);
+  color: var(--text);
+}
+
+.project-title a {
+  color: inherit;
+}
+
+.project-title a:hover {
+  color: var(--accent);
 }
 
 .project-description {
