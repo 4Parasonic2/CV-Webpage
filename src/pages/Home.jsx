@@ -1,134 +1,118 @@
 import { Link } from 'react-router-dom'
 import useReveal from '../hooks/useReveal.js'
+import { experience, skills } from '../data/resume.js'
 import './Home.css'
 
 /**
- * Small presentational cards for the "What I do" strip.
- * Kept in an array so it's trivial to add/edit/remove one.
- */
-const highlights = [
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="4" width="18" height="14" rx="2" />
-        <path d="M8 21h8M12 18v3" />
-      </svg>
-    ),
-    title: 'Robotics & Control',
-    text: 'Designing bio-inspired and autonomous control loops for real-world robotic systems.',
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" />
-      </svg>
-    ),
-    title: 'Neural Systems',
-    text: 'Modelling neurons and neural networks, from biological signals to computing.',
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
-      </svg>
-    ),
-    title: 'Software & Simulation',
-    text: 'Building, integrating and simulating software for unmanned autonomous systems.',
-  },
-]
-
-/**
- * Home — the landing page.
+ * Home — an editorial landing page.
  *
- * A polished, gradient-forward hero (status pill, gradient headline,
- * glowing orbs, glass profile card) followed by a "What I do" strip
- * and a short About section. All colors come from the theme tokens in
- * variables.css, so the page looks right in both light and dark mode.
+ * Inspired by a minimalist print-magazine layout: a warm cream canvas,
+ * a big Playfair Display serif-italic headline, generous whitespace,
+ * hairline dividers and an indigo accent. The Experience and Focus
+ * Areas sections reuse the data in src/data/resume.js, so you maintain
+ * that content in one place.
  */
 export default function Home() {
   const heroRef = useReveal()
-  const highlightsRef = useReveal()
-  const aboutRef = useReveal()
+  const expRef = useReveal()
+  const focusRef = useReveal()
+  const ctaRef = useReveal()
 
   return (
-    <div className="page home">
-      {/* Soft glowing gradient orbs floating behind the hero */}
-      <div className="home-orbs" aria-hidden="true">
-        <span className="orb orb-1" />
-        <span className="orb orb-2" />
+    <div className="editorial">
+      <div className="container">
+        {/* ---- Hero ---- */}
+        <section className="ed-hero reveal" ref={heroRef}>
+          <div className="ed-hero-text">
+            <p className="ed-eyebrow">Attila Kiri — Portfolio</p>
+            <h1 className="ed-title">
+              Robotics <span className="ed-amp">&amp;</span> Autonomous
+              Systems.
+            </h1>
+            <p className="ed-lead">
+              Designing bio-inspired control systems and software for robots
+              and unmanned vehicles — where neuroscience, control theory and
+              hands-on engineering meet.
+            </p>
+            <div className="ed-actions">
+              <Link to="/projects" className="btn btn-primary">
+                View Projects
+              </Link>
+              <a href="cv.pdf" download className="btn btn-outline">
+                Download CV
+              </a>
+            </div>
+          </div>
+
+          <div className="ed-hero-media">
+            {/* Replace public/profile.svg with a real 4:5 portrait photo */}
+            <img
+              src="profile.svg"
+              alt="Portrait of Attila Kiri"
+              width={800}
+              height={1000}
+              className="ed-portrait"
+            />
+          </div>
+        </section>
+
+        {/* ---- Selected Experience ---- */}
+        <section id="experience" className="ed-section reveal" ref={expRef}>
+          <div className="ed-section-label">
+            <h2>Experience</h2>
+          </div>
+          <div className="ed-section-body">
+            {experience.map((job) => (
+              <article className="ed-exp" key={job.role + job.period}>
+                <div className="ed-exp-head">
+                  <h3 className="ed-exp-title">{job.company}</h3>
+                  <span className="ed-exp-period">{job.period}</span>
+                </div>
+                <p className="ed-exp-role">{job.role}</p>
+                <p className="ed-exp-details">{job.details}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ---- Focus Areas ---- */}
+        <section id="focus" className="ed-section reveal" ref={focusRef}>
+          <div className="ed-section-label">
+            <h2>Focus Areas</h2>
+          </div>
+          <div className="ed-section-body">
+            <div className="ed-focus-grid">
+              {skills.map((group) => (
+                <div className="ed-focus" key={group.group}>
+                  <h4>{group.group}</h4>
+                  <ul>
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
 
-      <section className="container hero reveal" ref={heroRef}>
-        <div className="hero-text">
-          <span className="hero-badge">
-            <span className="hero-badge-dot" />
-            Available for new opportunities
-          </span>
-
-          <p className="hero-greeting">
-            Hi There!{' '}
-            <span className="hero-wave" aria-hidden="true">
-              👋
-            </span>
-          </p>
-
-          <h1 className="hero-title">
-            I'm <span className="hero-name">Attila Kiri</span>
-          </h1>
-
-          <p className="hero-role">Robotics &amp; Autonomous Systems Engineer</p>
-
-          <p className="hero-intro">
-            I design bio-inspired control systems and software for robots and
-            unmanned autonomous vehicles — bridging neuroscience, control
-            theory and hands-on engineering. Take a look at my work, or grab a
-            copy of my CV.
-          </p>
-
-          <div className="hero-actions">
-            {/* Internal navigation uses Link; downloads use a plain <a> */}
-            <Link to="/projects" className="btn btn-primary">
-              View Projects
-            </Link>
-            <a href="cv.pdf" download className="btn btn-outline">
-              Download CV
+      {/* ---- Contact CTA (full-bleed contrast band) ---- */}
+      <section id="contact" className="ed-cta reveal" ref={ctaRef}>
+        <div className="container ed-cta-inner">
+          <h2 className="ed-cta-title">Let&rsquo;s build something remarkable.</h2>
+          <a href="mailto:you@example.com" className="ed-cta-email">
+            you@example.com
+          </a>
+          <div className="ed-cta-links">
+            <a href="https://github.com/your-username" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noreferrer">
+              LinkedIn
             </a>
           </div>
         </div>
-
-        <div className="hero-photo">
-          {/* Gradient ring + glass card framing the profile picture.
-              Replace public/profile.svg with your own photo. */}
-          <div className="hero-photo-frame">
-            <img src="profile.svg" alt="Portrait of Attila Kiri" />
-          </div>
-          <div className="hero-photo-glow" aria-hidden="true" />
-        </div>
-      </section>
-
-      {/* "What I do" — three glass highlight cards */}
-      <section className="container highlights reveal" ref={highlightsRef}>
-        {highlights.map((item) => (
-          <article className="highlight-card" key={item.title}>
-            <span className="highlight-icon">{item.icon}</span>
-            <h3 className="highlight-title">{item.title}</h3>
-            <p className="highlight-text">{item.text}</p>
-          </article>
-        ))}
-      </section>
-
-      {/* Short "about me" strip */}
-      <section className="container about reveal" ref={aboutRef}>
-        <h2 className="section-title">About Me</h2>
-        <p>
-          I'm an engineer fascinated by how living systems move and think, and
-          how we can borrow those principles to build smarter machines. My work
-          spans neural science, neural processing and bio-inspired control —
-          from modelling how the cerebellum coordinates movement to programming
-          unmanned aerial vehicles to carry out real tasks. This paragraph is a
-          starting point: tell your own story here.
-        </p>
       </section>
     </div>
   )
