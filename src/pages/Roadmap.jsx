@@ -3,86 +3,48 @@ import useReveal from '../hooks/useReveal.js'
 import './Roadmap.css'
 
 /**
- * Roadmap — dual-track vertical timeline.
+ * Roadmap — two simple vertical timelines side by side.
  *
- * Two independent tracks (studies on the left, work on the right) run
- * side by side. Each track is a flex column of cards laid out by year:
- * every card's height is proportional to (end − start) years, so the
- * visible length of a card *is* the length of that period. Ongoing
- * entries (end === 'present') extend to the current year.
- *
- * On mobile the two tracks stack into one column.
+ * Each track (Studies / Work experience) is just a normal, top-to-
+ * bottom list of cards — no absolute positioning or year-based math.
+ * A single straight line runs behind each list (drawn once on the
+ * container, not recalculated per item), so there is nothing that can
+ * misalign or overlap, and the exact same markup collapses cleanly
+ * into a single column on mobile.
  */
-const CURRENT_YEAR = new Date().getFullYear()
-const YEAR_PX = 90 // vertical pixels per year — tune to taste
-
-/** Resolves the numeric end year, treating 'present' as this year. */
-function endYear(item) {
-  return item.end === 'present' || item.end == null ? CURRENT_YEAR : item.end
-}
-
-function Track({ title, items, side }) {
-  // Sort newest first (largest start year at top) so the present sits high.
+function Track({ title, items }) {
+  // Newest first, so the present sits at the top of each track.
   const sorted = [...items].sort((a, b) => b.start - a.start)
 
-  // The line running down each track spans from the newest entry's end
-  // year back to the oldest entry's start year.
-  const newestEnd = Math.max(...sorted.map(endYear))
-  const oldestStart = Math.min(...sorted.map((i) => i.start))
-  const totalYears = newestEnd - oldestStart
-
   return (
-    <div className={`track track-${side}`}>
+    <div className="track">
       <h2 className="track-title">{title}</h2>
 
-      <div
-        className="track-body"
-        style={{ minHeight: `${totalYears * YEAR_PX}px` }}
-      >
-        {/* Vertical line — only as tall as the track's actual duration */}
-        <span
-          className="track-line"
-          style={{ height: `${totalYears * YEAR_PX}px` }}
-          aria-hidden="true"
-        />
-
-        {sorted.map((item) => {
-          const spanYears = Math.max(0.5, endYear(item) - item.start)
-          // Offset from the top = (newest end − this entry's end) × YEAR_PX
-          const topOffset = (newestEnd - endYear(item)) * YEAR_PX
-          return (
-            <Card
-              key={item.title + item.start}
-              item={item}
-              side={side}
-              top={topOffset}
-              height={spanYears * YEAR_PX}
-            />
-          )
-        })}
-      </div>
+      <ul className="track-list">
+        {sorted.map((item) => (
+          <Entry key={item.title + item.start} item={item} />
+        ))}
+      </ul>
     </div>
   )
 }
 
-function Card({ item, side, top, height }) {
+function Entry({ item }) {
   const ref = useReveal()
   const endLabel = item.end === 'present' || item.end == null ? 'Present' : item.end
 
   return (
-    <div
-      ref={ref}
-      className={`track-card reveal track-card-${side}`}
-      style={{ top: `${top}px`, minHeight: `${height}px` }}
-    >
+    <li ref={ref} className="track-entry reveal">
       <span className="track-dot" aria-hidden="true" />
-      <div className="track-period">
-        {item.start} — {endLabel}
+      <div className="track-card">
+        <div className="track-period">
+          {item.start} — {endLabel}
+        </div>
+        <h3 className="track-card-title">{item.title}</h3>
+        <p className="track-card-place">{item.place}</p>
+        <p className="track-card-details">{item.details}</p>
       </div>
-      <h3 className="track-card-title">{item.title}</h3>
-      <p className="track-card-place">{item.place}</p>
-      <p className="track-card-details">{item.details}</p>
-    </div>
+    </li>
   )
 }
 
@@ -91,14 +53,13 @@ export default function Roadmap() {
     <div className="page container">
       <h1 className="section-title">Career Roadmap</h1>
       <p className="section-subtitle">
-        Two parallel journeys — my studies on the left and my work
-        experience on the right. Each line runs for as long as I was
-        involved with that chapter.
+        Two parallel journeys — my studies and my work experience, each
+        newest first.
       </p>
 
       <div className="roadmap">
-        <Track title="Studies" items={studies} side="left" />
-        <Track title="Work experience" items={jobs} side="right" />
+        <Track title="Studies" items={studies} />
+        <Track title="Work experience" items={jobs} />
       </div>
     </div>
   )

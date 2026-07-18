@@ -1,13 +1,11 @@
 /* ============================================================
-   ROADMAP PAGE — the timeline container
+   ROADMAP — two simple vertical timelines
    ------------------------------------------------------------
-   The central "double line" is drawn with two thin gradient
-   stripes (::before and ::after) 6px apart, fading out at the
-   top and bottom.
-   ============================================================ */
-
-/* ============================================================
-   ROADMAP — dual-track (studies left, jobs right)
+   Deliberately simple: a single straight line per track (drawn
+   once, not computed per item) with a dot and card for every
+   entry, laid out in normal document flow. Nothing here depends
+   on item duration or absolute positioning, so it can't drift out
+   of alignment and it collapses to one column cleanly on mobile.
    ============================================================ */
 
 .roadmap {
@@ -17,53 +15,55 @@
   padding: var(--space-4) 0;
 }
 
-.track {
-  display: flex;
-  flex-direction: column;
-}
-
 .track-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--accent);
   margin-bottom: var(--space-4);
   padding-bottom: var(--space-2);
   border-bottom: 1px solid var(--border);
 }
 
-/* The area cards float inside. `position: relative` anchors the line
-   and absolutely-positioned cards. */
-.track-body {
+.track-list {
   position: relative;
+  list-style: none;
 }
 
-/* Vertical accent line for each track. Its inline `height` (set in JSX)
-   makes it stop exactly where the track's oldest entry starts. */
-.track-line {
+/* The single straight line, drawn once behind every card in the list */
+.track-list::before {
+  content: '';
   position: absolute;
-  top: 0;
+  top: 4px;
+  bottom: 4px;
+  left: 5px;
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    var(--accent),
-    var(--accent-strong)
-  );
-  border-radius: 2px;
-  opacity: 0.7;
+  background: var(--accent);
+  opacity: 0.35;
+  border-radius: 1px;
 }
 
-.track-left .track-line {
-  right: 0;
+.track-entry {
+  position: relative;
+  padding-left: var(--space-4);
+  margin-bottom: var(--space-4);
 }
 
-.track-right .track-line {
-  left: 0;
+.track-entry:last-child {
+  margin-bottom: 0;
 }
 
-/* Cards are absolutely positioned so their height can encode the
-   number of years the entry lasted. */
-.track-card {
+.track-dot {
   position: absolute;
-  width: calc(100% - var(--space-4));
+  top: 5px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.track-card {
   padding: var(--space-3) var(--space-4);
   background: var(--bg-elevated);
   border: 1px solid var(--border);
@@ -75,33 +75,6 @@
 .track-card:hover {
   border-color: var(--border-strong);
   transform: translateY(-2px);
-}
-
-.track-card-left {
-  right: var(--space-4);
-}
-
-.track-card-right {
-  left: var(--space-4);
-}
-
-/* Dot marker sitting on the line */
-.track-dot {
-  position: absolute;
-  top: var(--space-4);
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
-}
-
-.track-card-left .track-dot {
-  right: calc(-1 * var(--space-4) - 5px);
-}
-
-.track-card-right .track-dot {
-  left: calc(-1 * var(--space-4) - 5px);
 }
 
 .track-period {
@@ -132,25 +105,6 @@
 @media (max-width: 720px) {
   .roadmap {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
-
-  .track-left .track-line,
-  .track-right .track-line {
-    left: 0;
-    right: auto;
-  }
-
-  .track-card-left,
-  .track-card-right {
-    left: var(--space-4);
-    right: 0;
-    width: calc(100% - var(--space-4));
-  }
-
-  .track-card-left .track-dot,
-  .track-card-right .track-dot {
-    left: calc(-1 * var(--space-4) - 5px);
-    right: auto;
+    gap: var(--space-5);
   }
 }

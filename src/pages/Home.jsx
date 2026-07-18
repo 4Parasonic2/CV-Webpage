@@ -6,17 +6,16 @@ import './Home.css'
 /**
  * Home — an editorial landing page.
  *
- * Inspired by a minimalist print-magazine layout: a warm cream canvas,
- * a big Playfair Display serif-italic headline, generous whitespace,
- * hairline dividers and an indigo accent. The Experience and Focus
- * Areas sections reuse the data in src/data/resume.js, so you maintain
- * that content in one place.
+ * A minimalist print-magazine layout: a warm cream canvas, a compact
+ * sans-serif headline, hairline dividers and an azure accent. Kept
+ * intentionally compact so the hero fits comfortably on one screen.
+ * The Experience and Focus Areas sections reuse the data in
+ * src/data/resume.js, so you maintain that content in one place.
  */
 export default function Home() {
   const heroRef = useReveal()
   const expRef = useReveal()
   const focusRef = useReveal()
-  const ctaRef = useReveal()
 
   return (
     <div className="editorial">
@@ -45,12 +44,11 @@ export default function Home() {
           </div>
 
           <div className="ed-hero-media">
-            {/* Replace public/profile.svg with a real 4:5 portrait photo */}
             <img
-              src="profile.svg"
+              src="profile.png"
               alt="Portrait of Attila Kiri"
               width={800}
-              height={1000}
+              height={600}
               className="ed-portrait"
             />
           </div>
@@ -96,24 +94,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-
-      {/* ---- Contact CTA (full-bleed contrast band) ---- */}
-      <section id="contact" className="ed-cta reveal" ref={ctaRef}>
-        <div className="container ed-cta-inner">
-          <h2 className="ed-cta-title">Let&rsquo;s build something remarkable.</h2>
-          <a href="mailto:you@example.com" className="ed-cta-email">
-            you@example.com
-          </a>
-          <div className="ed-cta-links">
-            <a href="https://github.com/your-username" target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

@@ -1,54 +1,55 @@
 /* ============================================================
    HOME PAGE — editorial landing
    ------------------------------------------------------------
-   A minimalist print-inspired layout: big serif-italic display
-   headline, 12-column grids, hairline dividers, and a full-bleed
-   contrast band for the contact call-to-action.
+   A compact, minimalist print-inspired layout: a moderate-size
+   sans-serif headline, hairline dividers between sections, and a
+   wide/short portrait so the whole hero fits comfortably in the
+   viewport without scrolling.
    ============================================================ */
 
 .editorial {
   /* The page's own top breathing room (navbar is sticky above) */
-  padding-top: var(--space-5);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-5);
 }
 
 /* ---- Hero ---- */
 .ed-hero {
   display: grid;
-  grid-template-columns: 2fr 1fr; /* text wide, portrait narrow */
-  align-items: end;               /* baseline-align like the reference */
-  gap: var(--space-6);
-  padding: var(--space-5) 0 var(--space-6);
+  grid-template-columns: 1.6fr 1fr; /* text wider, photo narrower */
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-4) 0 var(--space-5);
 }
 
 .ed-eyebrow {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--accent);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
+/* Headline: a bold sans-serif, not the display serif — kept modest
+   in size so the whole hero fits on one screen. */
 .ed-title {
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-heading);
   font-weight: 700;
-  /* Fluidly scales from phones to large screens */
-  font-size: clamp(3rem, 9vw, 7.5rem);
-  line-height: 0.92;
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1.08;
   letter-spacing: -0.01em;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-3);
 }
 
-/* The "&" stands upright and takes the accent color */
+/* The "&" takes the accent color as a small highlight */
 .ed-amp {
-  font-style: normal;
   color: var(--accent);
 }
 
 .ed-lead {
-  max-width: 34rem;
-  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  max-width: 32rem;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
   line-height: 1.6;
   color: var(--text-muted);
 }
@@ -56,18 +57,18 @@
 .ed-actions {
   display: flex;
   gap: var(--space-3);
-  margin-top: var(--space-5);
+  margin-top: var(--space-4);
   flex-wrap: wrap;
 }
 
-/* ---- Portrait ---- */
+/* ---- Portrait: wide and short, not a tall portrait crop ---- */
 .ed-portrait {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: var(--radius-sm);
+  object-position: center 30%; /* keep the face in frame */
+  border-radius: var(--radius);
   background: var(--bg-elevated-2);
-  /* thin inset outline, a signature editorial detail */
   outline: 1px solid var(--border);
   outline-offset: -1px;
 }
@@ -76,17 +77,17 @@
 .ed-section {
   display: grid;
   grid-template-columns: 1fr 2fr; /* label column, content column */
-  gap: var(--space-5);
-  padding: var(--space-6) 0;
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
   border-top: 1px solid var(--border); /* hairline divider */
 }
 
 .ed-section-label h2 {
   font-family: var(--font-heading);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--accent);
 }
 
@@ -94,7 +95,7 @@
 .ed-section-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-4);
 }
 
 .ed-exp-head {
@@ -102,33 +103,34 @@
   align-items: baseline;
   justify-content: space-between;
   gap: var(--space-3);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
 }
 
 .ed-exp-title {
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-heading);
   font-weight: 700;
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  line-height: 1.1;
+  font-size: 1.15rem;
+  line-height: 1.2;
 }
 
 .ed-exp-period {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 500;
   color: var(--text-muted);
   white-space: nowrap;
 }
 
 .ed-exp-role {
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  margin-bottom: var(--space-3);
+  color: var(--accent);
+  margin-bottom: var(--space-2);
 }
 
 .ed-exp-details {
   max-width: 42rem;
-  line-height: 1.7;
+  font-size: 0.92rem;
+  line-height: 1.6;
   color: var(--text-muted);
 }
 
@@ -136,81 +138,23 @@
 .ed-focus-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-5) var(--space-4);
+  gap: var(--space-4);
 }
 
 .ed-focus h4 {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .ed-focus ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  font-size: 0.92rem;
+  gap: var(--space-1);
+  font-size: 0.85rem;
   color: var(--text-muted);
-}
-
-/* ---- Contact CTA (full-bleed contrast band) ---- */
-.ed-cta {
-  margin-top: var(--space-6);
-  padding: var(--space-6) 0;
-  background: var(--band-bg);
-  color: var(--band-text);
-}
-
-.ed-cta-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.ed-cta-title {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 700;
-  font-size: clamp(2.2rem, 6vw, 4.5rem);
-  line-height: 1.05;
-  margin-bottom: var(--space-5);
-}
-
-.ed-cta-email {
-  display: inline-block;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  color: var(--band-text);
-  padding: 1rem 3rem;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--band-text) 30%, transparent);
-  transition: background-color var(--transition), color var(--transition);
-}
-
-.ed-cta-email:hover {
-  background: var(--band-text);
-  color: var(--band-bg);
-}
-
-.ed-cta-links {
-  display: flex;
-  gap: var(--space-5);
-  margin-top: var(--space-6);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
-.ed-cta-links a {
-  color: var(--band-text);
-  opacity: 0.55;
-  transition: opacity var(--transition);
-}
-
-.ed-cta-links a:hover {
-  opacity: 1;
 }
 
 /* ============================================================
@@ -221,18 +165,20 @@
 @media (max-width: 860px) {
   .ed-hero {
     grid-template-columns: 1fr;
-    align-items: start;
-    gap: var(--space-5);
+    gap: var(--space-4);
   }
 
   .ed-hero-media {
     order: -1; /* portrait above the headline */
-    max-width: 320px;
+  }
+
+  .ed-portrait {
+    aspect-ratio: 16 / 9; /* even shorter once it spans full width */
   }
 
   .ed-section {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 }
 

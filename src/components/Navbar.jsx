@@ -55,7 +55,7 @@ export default function Navbar() {
       <div className="container navbar-inner">
         {/* Brand: avatar + name, links back to Home */}
         <NavLink to="/" className="navbar-brand">
-          <img src="profile.svg" alt="" className="navbar-avatar" />
+          <img src="profile.png" alt="" className="navbar-avatar" />
           <span>ATTILA KIRI</span>
         </NavLink>
 

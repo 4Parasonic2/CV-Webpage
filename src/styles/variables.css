@@ -6,8 +6,8 @@
    To re-theme the whole website, you only edit this file.
 
    The palette is an editorial one: a warm "canvas" cream, near
-   black "ink", and an indigo accent — paired with a Playfair
-   Display serif for display type and Inter for everything else.
+   black "ink", and an azure blue accent, paired with Inter for
+   both display type and body text.
 
    Two themes: light (default) and dark. Toggle by setting
    `data-theme="dark"` on <html>. Every component reads these
@@ -21,11 +21,11 @@
   --bg-elevated: #ffffff;     /* cards, navbar                */
   --bg-elevated-2: #eeede6;   /* hovered cards, tags          */
 
-  /* Brand — indigo */
-  --accent: #4f46e5;          /* primary indigo               */
-  --accent-strong: #4338ca;   /* deeper indigo for buttons    */
-  --accent-2: #6366f1;        /* lighter indigo for gradients */
-  --accent-soft: rgba(79, 70, 229, 0.10);
+  /* Brand — azure blue */
+  --accent: #0ea5e9;          /* primary azure                */
+  --accent-strong: #0369a1;   /* deeper azure for buttons     */
+  --accent-2: #38bdf8;        /* lighter azure for gradients  */
+  --accent-soft: rgba(14, 165, 233, 0.10);
 
   /* Ink text */
   --ink: #1a1a1a;
@@ -35,7 +35,7 @@
 
   /* Borders — hairline ink lines, very editorial */
   --border: rgba(26, 26, 26, 0.12);
-  --border-strong: rgba(79, 70, 229, 0.45);
+  --border-strong: rgba(14, 165, 233, 0.45);
 
   /* Contrast band used by the contact CTA (dark on light theme) */
   --band-bg: #1a1a1a;
@@ -43,7 +43,7 @@
 
   /* Effects */
   --shadow-card: 0 12px 34px rgba(26, 26, 26, 0.10);
-  --glow-accent: 0 0 24px rgba(79, 70, 229, 0.22);
+  --glow-accent: 0 0 24px rgba(14, 165, 233, 0.22);
 }
 
 :root[data-theme='dark'] {
@@ -51,10 +51,10 @@
   --bg-elevated: #232323;
   --bg-elevated-2: #2c2c2c;
 
-  --accent: #818cf8;
-  --accent-strong: #6366f1;
-  --accent-2: #a5b4fc;
-  --accent-soft: rgba(129, 140, 248, 0.16);
+  --accent: #38bdf8;
+  --accent-strong: #0ea5e9;
+  --accent-2: #7dd3fc;
+  --accent-soft: rgba(56, 189, 248, 0.16);
 
   --ink: #f5f5f0;
   --text: #f5f5f0;
@@ -62,19 +62,18 @@
   --cream: #f5f5f0;
 
   --border: rgba(245, 245, 240, 0.14);
-  --border-strong: rgba(129, 140, 248, 0.45);
+  --border-strong: rgba(56, 189, 248, 0.45);
 
   /* On dark theme the CTA band inverts to the light cream */
   --band-bg: #f5f5f0;
   --band-text: #1a1a1a;
 
   --shadow-card: 0 12px 34px rgba(0, 0, 0, 0.45);
-  --glow-accent: 0 0 24px rgba(129, 140, 248, 0.35);
+  --glow-accent: 0 0 24px rgba(56, 189, 248, 0.35);
 }
 
 :root {
   /* Typography */
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-heading: 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
