@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container footer-inner">
         <p>© {year} Attila Kiri. Built with React.</p>
         <div className="footer-links">
-          <a href="https://github.com/your-username" target="_blank" rel="noreferrer">
+          <a href="https://github.com/4Parasonic2" target="_blank" rel="noreferrer">
             GitHub
           </a>
           <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noreferrer">

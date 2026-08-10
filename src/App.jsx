@@ -6,7 +6,6 @@ import Home from './pages/Home.jsx'
 import Projects from './pages/Projects.jsx'
 import ProjectDetail from './pages/ProjectDetail.jsx'
 import Resume from './pages/Resume.jsx'
-import Roadmap from './pages/Roadmap.jsx'
 
 /**
  * App defines the overall page layout and the routes.
@@ -35,7 +34,6 @@ export default function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/resume" element={<Resume />} />
-          <Route path="/roadmap" element={<Roadmap />} />
         </Routes>
       </main>
 

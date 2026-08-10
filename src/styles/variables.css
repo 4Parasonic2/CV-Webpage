@@ -5,9 +5,16 @@
    defined here as a CSS custom property ("CSS variable").
    To re-theme the whole website, you only edit this file.
 
-   The palette is an editorial one: a warm "canvas" cream, near
-   black "ink", and an azure blue accent, paired with Inter for
-   both display type and body text.
+   The palette is EARTHY but professional:
+     - Parchment      #f2efe6  warm paper background (light)
+     - Midnight Soil  #141210  near-black background (dark)
+     - Deep Forest    #1E3A2B  green accent (studies track)
+     - Moss           #7A8B6E  forest's dark-mode stand-in —
+                               plain forest green is nearly
+                               invisible on Midnight Soil
+     - Warm Terracotta #B85C38 the "pop" accent (buttons, links,
+                               work track)
+     - Taupe          #7a7163  muted text / guide lines
 
    Two themes: light (default) and dark. Toggle by setting
    `data-theme="dark"` on <html>. Every component reads these
@@ -17,59 +24,58 @@
 :root,
 :root[data-theme='light'] {
   /* Surfaces */
-  --bg: #f5f5f0;              /* canvas — warm paper cream    */
-  --bg-elevated: #ffffff;     /* cards, navbar                */
-  --bg-elevated-2: #eeede6;   /* hovered cards, tags          */
+  --bg: #f2efe6;              /* parchment                     */
+  --bg-elevated: #faf8f1;     /* cards, navbar                 */
+  --bg-elevated-2: #e7e2d3;   /* hovered cards, tags           */
 
-  /* Brand — azure blue */
-  --accent: #0ea5e9;          /* primary azure                */
-  --accent-strong: #0369a1;   /* deeper azure for buttons     */
-  --accent-2: #38bdf8;        /* lighter azure for gradients  */
-  --accent-soft: rgba(14, 165, 233, 0.10);
+  /* Brand — warm terracotta is the primary "pop" accent */
+  --accent: #b85c38;
+  --accent-strong: #99482a;   /* deeper terracotta for buttons */
+  --accent-soft: rgba(184, 92, 56, 0.10);
 
-  /* Ink text */
-  --ink: #1a1a1a;
-  --text: #1a1a1a;
-  --text-muted: rgba(26, 26, 26, 0.62);
-  --cream: #1a1a1a;           /* strong heading color (dark on light) */
+  /* Timeline track colors (also used by the arrows graph) */
+  --track-study: #1e3a2b;     /* deep forest green             */
+  --track-work: #b85c38;      /* warm terracotta               */
 
-  /* Borders — hairline ink lines, very editorial */
-  --border: rgba(26, 26, 26, 0.12);
-  --border-strong: rgba(14, 165, 233, 0.45);
+  /* Text */
+  --ink: #211d16;
+  --text: #211d16;
+  --text-muted: #7a7163;      /* taupe                         */
+  --cream: #211d16;           /* strong heading color          */
 
-  /* Contrast band used by the contact CTA (dark on light theme) */
-  --band-bg: #1a1a1a;
-  --band-text: #f5f5f0;
+  /* Borders — hairline earthy lines */
+  --border: rgba(33, 29, 22, 0.13);
+  --border-strong: rgba(184, 92, 56, 0.45);
 
   /* Effects */
-  --shadow-card: 0 12px 34px rgba(26, 26, 26, 0.10);
-  --glow-accent: 0 0 24px rgba(14, 165, 233, 0.22);
+  --shadow-card: 0 12px 34px rgba(33, 29, 22, 0.10);
+  --glow-accent: 0 0 24px rgba(184, 92, 56, 0.22);
 }
 
 :root[data-theme='dark'] {
-  --bg: #1a1a1a;
-  --bg-elevated: #232323;
-  --bg-elevated-2: #2c2c2c;
+  --bg: #141210;              /* midnight soil                 */
+  --bg-elevated: #1d1a16;
+  --bg-elevated-2: #27221b;
 
-  --accent: #38bdf8;
-  --accent-strong: #0ea5e9;
-  --accent-2: #7dd3fc;
-  --accent-soft: rgba(56, 189, 248, 0.16);
+  --accent: #c97a52;          /* lifted terracotta for contrast */
+  --accent-strong: #b85c38;
+  --accent-soft: rgba(201, 122, 82, 0.16);
 
-  --ink: #f5f5f0;
-  --text: #f5f5f0;
-  --text-muted: rgba(245, 245, 240, 0.60);
-  --cream: #f5f5f0;
+  /* Forest green is almost invisible on midnight soil,
+     so the studies track swaps to moss in dark mode. */
+  --track-study: #7a8b6e;     /* moss                          */
+  --track-work: #c97a52;
 
-  --border: rgba(245, 245, 240, 0.14);
-  --border-strong: rgba(56, 189, 248, 0.45);
+  --ink: #ece7db;
+  --text: #ece7db;
+  --text-muted: #a49b8c;
+  --cream: #ece7db;
 
-  /* On dark theme the CTA band inverts to the light cream */
-  --band-bg: #f5f5f0;
-  --band-text: #1a1a1a;
+  --border: rgba(236, 231, 219, 0.13);
+  --border-strong: rgba(201, 122, 82, 0.45);
 
   --shadow-card: 0 12px 34px rgba(0, 0, 0, 0.45);
-  --glow-accent: 0 0 24px rgba(56, 189, 248, 0.35);
+  --glow-accent: 0 0 24px rgba(201, 122, 82, 0.30);
 }
 
 :root {

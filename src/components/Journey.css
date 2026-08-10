@@ -1,0 +1,248 @@
+/* ============================================================
+   JOURNEY — center-split vertical timeline
+   ------------------------------------------------------------
+   Two colored lines run side by side down the CENTER:
+     left line  = studies (forest green / moss in dark mode)
+     right line = work (terracotta)
+   Study bubbles sit to the LEFT of the lines, work bubbles to
+   the RIGHT. Every bubble's dot sits on its own line, aligned
+   with the top of the bubble. Bubbles are free-height, so long
+   descriptions just grow the card. On mobile everything folds
+   into a single column with the lines on the left edge.
+   ============================================================ */
+
+/* ---- Column headers naming the two sides ---- */
+.journey-heads {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: var(--space-4);
+}
+
+.journey-head {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.journey-head-study {
+  color: var(--track-study);
+}
+
+.journey-head-work {
+  color: var(--track-work);
+}
+
+/* ---- The list with the two center lines ---- */
+.journey {
+  position: relative;
+  list-style: none;
+}
+
+.journey::before,
+.journey::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 2px;
+}
+
+/* Left center line: studies */
+.journey::before {
+  left: calc(50% - 7px);
+  background: var(--track-study);
+  opacity: 0.75;
+}
+
+/* Right center line: work */
+.journey::after {
+  left: calc(50% + 4px);
+  background: var(--track-work);
+  opacity: 0.75;
+}
+
+/* ---- Entries: studies left of the lines, work right ---- */
+.journey-entry {
+  position: relative;
+  width: calc(50% - 40px); /* leaves a 80px center channel for the lines */
+  margin-bottom: var(--space-4);
+}
+
+.journey-study {
+  margin-right: auto; /* pushes the bubble to the left half */
+}
+
+.journey-work {
+  margin-left: auto; /* pushes the bubble to the right half */
+}
+
+/* ---- Dots: on the entry's own line, at the top of the bubble ----
+   Line centers sit 5.5px either side of the exact middle; the 13px
+   dot is offset so its center lands exactly on its line. */
+.journey-dot {
+  position: absolute;
+  top: 14px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid var(--bg); /* small gap so it pops off the line */
+}
+
+.journey-study .journey-dot {
+  right: -41px;
+  background: var(--track-study);
+}
+
+.journey-work .journey-dot {
+  left: -41px;
+  background: var(--track-work);
+}
+
+/* ---- Bubbles ---- */
+.journey-card {
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.journey-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.journey-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+/* Small colored label naming the track, matching its line color */
+.journey-kind {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.journey-study .journey-kind {
+  color: var(--track-study);
+}
+
+.journey-work .journey-kind {
+  color: var(--track-work);
+}
+
+.journey-period {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.journey-title {
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.journey-place {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.journey-details {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.journey-details:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Nested bubbles: study trips inside a longer study ---- */
+.journey-subs {
+  list-style: none;
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.journey-sub {
+  padding: var(--space-3);
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--track-study); /* ties it to the study line */
+  border-radius: var(--radius-sm);
+}
+
+/* Small chip marking the nested bubble as a trip within the study */
+.journey-sub-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--track-study);
+  background: color-mix(in srgb, var(--track-study) 12%, transparent);
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+}
+
+.journey-sub-title {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.journey-sub .journey-details {
+  font-size: 0.88rem;
+}
+
+/* ============================================================
+   MOBILE — single column, lines on the left edge
+   ============================================================ */
+@media (max-width: 720px) {
+  /* Side headers make no sense in one column; each bubble already
+     carries its own colored Studies/Work label */
+  .journey-heads {
+    display: none;
+  }
+
+  .journey::before {
+    left: 10px;
+  }
+
+  .journey::after {
+    left: 30px;
+  }
+
+  .journey-entry,
+  .journey-study,
+  .journey-work {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 64px; /* room for both lines + dot */
+  }
+
+  /* Dots move onto the left-edge lines (centers x=11.5 and x=31.5) */
+  .journey-study .journey-dot {
+    left: 5px;
+    right: auto;
+  }
+
+  .journey-work .journey-dot {
+    left: 25px;
+    right: auto;
+  }
+}

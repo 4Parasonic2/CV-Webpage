@@ -1,21 +1,19 @@
 import { Link } from 'react-router-dom'
 import useReveal from '../hooks/useReveal.js'
-import { experience, skills } from '../data/resume.js'
+import HeroCarousel from '../components/HeroCarousel.jsx'
+import Journey from '../components/Journey.jsx'
 import './Home.css'
 
 /**
- * Home — an editorial landing page.
+ * Home — the landing page.
  *
- * A minimalist print-magazine layout: a warm cream canvas, a compact
- * sans-serif headline, hairline dividers and an azure accent. Kept
- * intentionally compact so the hero fits comfortably on one screen.
- * The Experience and Focus Areas sections reuse the data in
- * src/data/resume.js, so you maintain that content in one place.
+ * Hero introduction, then the full career journey as a center-split
+ * timeline: two colored lines down the middle with study bubbles on
+ * the left and work bubbles on the right. Content from src/data/.
  */
 export default function Home() {
   const heroRef = useReveal()
-  const expRef = useReveal()
-  const focusRef = useReveal()
+  const journeyRef = useReveal()
 
   return (
     <div className="editorial">
@@ -23,10 +21,8 @@ export default function Home() {
         {/* ---- Hero ---- */}
         <section className="ed-hero reveal" ref={heroRef}>
           <div className="ed-hero-text">
-            <p className="ed-eyebrow">Attila Kiri — Portfolio</p>
             <h1 className="ed-title">
-              Robotics <span className="ed-amp">&amp;</span> Autonomous
-              Systems.
+              Autonomous systems student <span className="ed-amp">&amp;</span> engineer
             </h1>
             <p className="ed-lead">
               Designing bio-inspired control systems and software for robots
@@ -44,54 +40,17 @@ export default function Home() {
           </div>
 
           <div className="ed-hero-media">
-            <img
-              src="profile.png"
-              alt="Portrait of Attila Kiri"
-              width={800}
-              height={600}
-              className="ed-portrait"
-            />
+            <HeroCarousel />
           </div>
         </section>
 
-        {/* ---- Selected Experience ---- */}
-        <section id="experience" className="ed-section reveal" ref={expRef}>
-          <div className="ed-section-label">
-            <h2>Experience</h2>
-          </div>
-          <div className="ed-section-body">
-            {experience.map((job) => (
-              <article className="ed-exp" key={job.role + job.period}>
-                <div className="ed-exp-head">
-                  <h3 className="ed-exp-title">{job.company}</h3>
-                  <span className="ed-exp-period">{job.period}</span>
-                </div>
-                <p className="ed-exp-role">{job.role}</p>
-                <p className="ed-exp-details">{job.details}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* ---- Focus Areas ---- */}
-        <section id="focus" className="ed-section reveal" ref={focusRef}>
-          <div className="ed-section-label">
-            <h2>Focus Areas</h2>
-          </div>
-          <div className="ed-section-body">
-            <div className="ed-focus-grid">
-              {skills.map((group) => (
-                <div className="ed-focus" key={group.group}>
-                  <h4>{group.group}</h4>
-                  <ul>
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* ---- Career journey timeline ---- */}
+        <section className="journey-section reveal" ref={journeyRef}>
+          <h2 className="ed-section-heading">Journey</h2>
+          <p className="journey-blurb">
+            Studies on the left, work on the right — newest first.
+          </p>
+          <Journey />
         </section>
       </div>
     </div>

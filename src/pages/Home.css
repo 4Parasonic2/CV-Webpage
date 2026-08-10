@@ -1,10 +1,8 @@
 /* ============================================================
-   HOME PAGE — editorial landing
+   HOME PAGE — hero + journey timeline
    ------------------------------------------------------------
-   A compact, minimalist print-inspired layout: a moderate-size
-   sans-serif headline, hairline dividers between sections, and a
-   wide/short portrait so the whole hero fits comfortably in the
-   viewport without scrolling.
+   Compact editorial layout: hero introduction, then the
+   center-split career timeline (styles in components/Journey.css).
    ============================================================ */
 
 .editorial {
@@ -31,8 +29,6 @@
   margin-bottom: var(--space-3);
 }
 
-/* Headline: a bold sans-serif, not the display serif — kept modest
-   in size so the whole hero fits on one screen. */
 .ed-title {
   font-family: var(--font-heading);
   font-weight: 700;
@@ -42,7 +38,7 @@
   margin-bottom: var(--space-3);
 }
 
-/* The "&" takes the accent color as a small highlight */
+/* The "&" takes the terracotta accent as a small highlight */
 .ed-amp {
   color: var(--accent);
 }
@@ -61,107 +57,38 @@
   flex-wrap: wrap;
 }
 
-/* ---- Portrait: wide and short, not a tall portrait crop ---- */
-.ed-portrait {
+/* ---- Hero media: photo carousel lives in components/HeroCarousel ---- */
+.ed-hero-media {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: center 30%; /* keep the face in frame */
-  border-radius: var(--radius);
-  background: var(--bg-elevated-2);
-  outline: 1px solid var(--border);
-  outline-offset: -1px;
+  min-width: 0;
 }
 
-/* ---- Sections (Experience, Focus Areas) ---- */
-.ed-section {
-  display: grid;
-  grid-template-columns: 1fr 2fr; /* label column, content column */
-  gap: var(--space-4);
+/* ---- Journey section ---- */
+.journey-section {
   padding: var(--space-5) 0;
-  border-top: 1px solid var(--border); /* hairline divider */
 }
 
-.ed-section-label h2 {
+.ed-section-heading {
   font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--accent);
-}
-
-/* ---- Experience entries ---- */
-.ed-section-body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.ed-exp-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-  margin-bottom: var(--space-1);
-}
-
-.ed-exp-title {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.15rem;
-  line-height: 1.2;
-}
-
-.ed-exp-period {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-
-.ed-exp-role {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--accent);
   margin-bottom: var(--space-2);
 }
 
-.ed-exp-details {
-  max-width: 42rem;
-  font-size: 0.92rem;
-  line-height: 1.6;
+.journey-blurb {
+  font-size: 0.9rem;
   color: var(--text-muted);
-}
-
-/* ---- Focus Areas grid ---- */
-.ed-focus-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
-}
-
-.ed-focus h4 {
-  font-family: var(--font-heading);
-  font-size: 0.92rem;
-  font-weight: 600;
-  margin-bottom: var(--space-2);
-}
-
-.ed-focus ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  margin-bottom: var(--space-4);
 }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 
-/* Tablet: stack hero and sections into one column */
+/* Tablet: stack the hero into one column */
 @media (max-width: 860px) {
   .ed-hero {
     grid-template-columns: 1fr;
@@ -170,26 +97,5 @@
 
   .ed-hero-media {
     order: -1; /* portrait above the headline */
-  }
-
-  .ed-portrait {
-    aspect-ratio: 16 / 9; /* even shorter once it spans full width */
-  }
-
-  .ed-section {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
-}
-
-/* Phones: focus areas drop to two columns */
-@media (max-width: 560px) {
-  .ed-focus-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .ed-exp-head {
-    flex-direction: column;
-    gap: var(--space-1);
   }
 }

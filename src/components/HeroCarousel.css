@@ -1,0 +1,133 @@
+/* ============================================================
+   HERO CAROUSEL — photo library with arrow navigation
+   ============================================================ */
+
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius);
+  outline: 1px solid var(--border);
+  outline-offset: -1px;
+  overflow: hidden;
+  background: var(--bg-elevated-2);
+}
+
+.hero-carousel-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.hero-carousel-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  pointer-events: none;
+}
+
+.hero-carousel-img.is-active {
+  opacity: 1;
+}
+
+/* ---- Prev / next arrows ---- */
+.hero-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  color: var(--ink);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition);
+}
+
+.hero-carousel-nav:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.hero-carousel-nav:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.hero-carousel-nav--prev {
+  left: 0.65rem;
+}
+
+.hero-carousel-nav--next {
+  right: 0.65rem;
+}
+
+/* ---- Dot indicators ---- */
+.hero-carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 0.7rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.hero-carousel-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.hero-carousel-dot.is-active {
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
+.hero-carousel-dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Screen-reader only live region */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 860px) {
+  .hero-carousel-stage {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel-img {
+    transition: none;
+  }
+}

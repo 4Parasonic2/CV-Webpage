@@ -236,4 +236,41 @@ export const projects = [
     video: null,
     links: [],
   },
+  {
+    slug: 'x-tech-entrepreneurship',
+    title: 'X Tech Entrepreneurship',
+    description:
+      'Building a company from the ground up — from finding a problem worth solving to validating a business model and shipping a product.',
+    tech: ['Business Model', 'Market Research', 'Product Strategy', 'Pitching', 'Startups'],
+    github: null,
+    demo: null,
+    image: null,
+    longDescription: [
+      'X Tech Entrepreneurship is about turning a technical idea into a real company. It covers the full early-stage journey: spotting a problem, understanding customers and markets, shaping a value proposition, and building a business model that can actually work.',
+      'The focus is practical — validating assumptions with real feedback, planning go-to-market, and learning how to pitch, fund, and organise a venture so engineering work connects to commercial outcomes.',
+    ],
+    learnings: [
+      'Identify a problem worth solving and frame it as a business opportunity.',
+      'Research markets, customers and competitors to validate demand.',
+      'Design a business model and value proposition for a tech venture.',
+      'Plan go-to-market and early product strategy under uncertainty.',
+      'Pitch a company clearly to partners, customers and investors.',
+      'Connect technical work to commercial and organisational decisions.',
+    ],
+    sections: [
+      {
+        heading: 'What the project covers',
+        items: [
+          'Problem discovery and opportunity framing',
+          'Customer and market research',
+          'Business model and value proposition design',
+          'Product strategy and early validation',
+          'Pitching and venture organisation',
+        ],
+      },
+    ],
+    gallery: [],
+    video: null,
+    links: [],
+  },
 ]

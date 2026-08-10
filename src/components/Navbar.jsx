@@ -26,14 +26,6 @@ const icons = {
       <path d="M9 11h6M9 15h6" />
     </svg>
   ),
-  roadmap: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 3v18" />
-      <circle cx="12" cy="6" r="2.2" />
-      <circle cx="12" cy="18" r="2.2" />
-      <path d="M12 12h6M12 12H6" />
-    </svg>
-  ),
 }
 
 /** Nav links live in one array so adding a page later is a one-line change. */
@@ -41,7 +33,6 @@ const links = [
   { to: '/', label: 'Home', icon: icons.home },
   { to: '/projects', label: 'Projects', icon: icons.projects },
   { to: '/resume', label: 'Resume', icon: icons.resume },
-  { to: '/roadmap', label: 'Roadmap', icon: icons.roadmap },
 ]
 
 /**
@@ -55,8 +46,7 @@ export default function Navbar() {
       <div className="container navbar-inner">
         {/* Brand: avatar + name, links back to Home */}
         <NavLink to="/" className="navbar-brand">
-          <img src="profile.png" alt="" className="navbar-avatar" />
-          <span>ATTILA KIRI</span>
+          <span>ATTILA ISTVAN KIRI</span>
         </NavLink>
 
         <nav className="navbar-links" aria-label="Main navigation">

@@ -1,71 +1,89 @@
 /**
- * CAREER ROADMAP DATA
- * -------------------
- * Milestones for the timeline on the Roadmap page.
- * IMPORTANT: keep this list ordered NEWEST FIRST — the page renders
- * items top-to-bottom, and the design starts with the present at the
- * top and goes back in time as you scroll down.
+ * CAREER TIMELINE DATA — dual track (studies + jobs).
  *
- * Fields:
- *   date    - when it happened (free text: a year, "Summer 2020", ...)
- *   title   - short headline for the milestone
- *   place   - company / school / context line
- *   details - 1-2 sentences describing the milestone
- */
-/**
- * CAREER ROADMAP DATA — dual track (studies + jobs).
+ * Shown in the "My Journey" timeline on the Home page: two colored
+ * lines run down the middle, with STUDY bubbles on the LEFT and WORK
+ * bubbles on the RIGHT, flowing down the page newest first.
  *
- * Two separate arrays render as two vertical lines on the Roadmap
- * page: studies on the LEFT, jobs on the RIGHT. Each entry has a
- * start and end year. A missing `end` (or end: 'present') means the
- * entry is still ongoing — its line runs to the bottom of the page.
- * Entries whose `end` is set have their line stop at the end year,
- * which naturally visualises career gaps.
+ * Fields per entry:
+ *   start    - year it began (number)
+ *   end      - year it ended (number), or 'present' if ongoing
+ *   title    - degree name or job title
+ *   place    - university / company name
+ *   details  - description; as long as you like, the bubble grows with it
+ *   children - (studies only, optional) shorter study trips that happened
+ *              INSIDE this study — summer schools, exchange semesters,
+ *              field campaigns. Rendered as small nested bubbles inside
+ *              the parent bubble. Same fields (start, end, title, place,
+ *              details), and `end` may be omitted for one-off trips.
  *
- * Keep both arrays ordered NEWEST FIRST (largest start year first).
+ * Order within the arrays doesn't matter — entries are sorted
+ * newest-first automatically. All text below is SAMPLE text: replace
+ * it with your real studies and jobs.
  */
 export const studies = [
   {
-    start: 2021,
-    end: 2024,
-    title: 'BSc Computer Science',
-    place: 'University of Somewhere',
+    start: 2024,
+    end: 'present',
+    title: 'Autonomous Systems MSc',
+    place: 'Technical University of Denmark',
     details:
-      'Focused on web technologies and human-computer interaction. Thesis on progressive web applications.',
+      'On my masters I had experience of control and path planning on robots on the ground, in the air and on water.',
+
+    children: [
+      {
+        start: 2026,
+        title: 'Exchange semester',
+        place: 'Spain, Barcelona',
+        details:
+        'Exchange focused on learning about Human computer interaction, viability of business ideas Research and engineering ethics, and semantic data management',
+      },
+    ],
   },
   {
-    start: 2017,
-    end: 2021,
-    title: 'High school diploma',
-    place: 'Somewhere High',
+    start: 2021,
+    end: 2024,
+    title: 'BSc Mechatronics Engineering',
+    place: 'University of Somewhere',
     details:
-      'Wrote my first line of HTML for a school project — the spark that led to everything since.',
+      'Foundations in mechanics, electronics, control theory and programming. Thesis project: a self-balancing mobile robot with sensor fusion for state estimation, built and tested on real hardware.',
+    children: [
+      {
+        start: 2023,
+        end: 2023,
+        title: 'Erasmus exchange semester',
+        place: 'University of Elsewhere',
+        details:
+          'One semester abroad focused on embedded systems and robot kinematics; joined the local robot-soccer team for the spring tournament.',
+      },
+    ],
   },
+
 ]
 
 export const jobs = [
   {
     start: 2024,
     end: 'present',
-    title: 'Frontend Developer',
-    place: 'Acme Web Studio',
+    title: 'RPA engineer',
+    place: 'Totalenergies',
     details:
-      'Leading the UI work on client projects, building design systems, and mentoring junior developers.',
+      'Part-time alongside the MSc. Developing and testing navigation software for autonomous mobile robots used in warehouse logistics: path planning, obstacle avoidance, and the tooling to diagnose failures in the field. Working in a small cross-functional team shipping to real customer sites.',
   },
   {
     start: 2022,
-    end: 2024,
-    title: 'Junior Web Developer',
+    end: 2023,
+    title: 'Engineering Intern',
     place: 'Startup Inc.',
     details:
-      'First developer job. Learned professional workflows: code review, agile, testing, and shipping to production.',
+      'Six-month internship on the perception team. Built data-collection and labelling pipelines for a camera-based inspection product, and implemented evaluation scripts that became part of the team\u2019s standard release checks.',
   },
   {
     start: 2021,
-    end: 2021,
-    title: 'Summer internship',
-    place: 'Local Agency',
+    end: 2022,
+    title: 'Student Assistant, Robotics Lab',
+    place: 'University of Somewhere',
     details:
-      'A short summer fixing bugs and shipping small features — my first taste of real-world code.',
+      'Maintained the lab\u2019s fleet of mobile robot platforms, prepared exercise materials for undergraduate courses, and helped supervise student projects during lab hours.',
   },
 ]

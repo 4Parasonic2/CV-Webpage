@@ -1,6 +1,88 @@
 /* ============================================================
    PROJECTS PAGE
+   ------------------------------------------------------------
+   "Featured Projects" header with left corner brackets, then
+   the project card grid.
    ============================================================ */
+
+.projects-featured {
+  position: relative;
+  margin-bottom: var(--space-5);
+  padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 0.35rem);
+}
+
+.projects-bracket {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.projects-bracket-corner {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-color: var(--accent);
+  border-style: solid;
+}
+
+.projects-bracket-corner--tl {
+  top: 0;
+  left: 0;
+  border-width: 2.5px 0 0 2.5px;
+}
+
+.projects-bracket-corner--bl {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 2.5px 2.5px;
+}
+
+/* Soft right-side fade so the bracket reads as an open frame */
+.projects-featured::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 2.5px;
+  background: linear-gradient(
+    180deg,
+    var(--accent) 0%,
+    transparent 35%,
+    transparent 65%,
+    var(--accent) 100%
+  );
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.projects-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+
+.projects-featured-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 3.2vw, 2.15rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-2);
+}
+
+.projects-featured-title::after {
+  display: none;
+}
+
+.projects-featured-blurb {
+  max-width: 28rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
 
 .projects-grid {
   display: grid;
