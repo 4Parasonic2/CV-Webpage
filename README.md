@@ -2,7 +2,7 @@
 
 A static portfolio website built with **React** and **Vite**, hosted for free on **GitHub Pages**.
 
-Pages: **Home** · **Projects** · **CV / Resume** · **Career Roadmap** (animated timeline)
+Pages: **Home** (intro, photo carousel and the career timeline) · **Projects** · **CV / Resume**
 
 ---
 
@@ -30,11 +30,13 @@ All personal content lives in `src/data/` — you should rarely need to touch an
 |---|---|
 | `src/data/projects.js` | Project cards on the Projects page |
 | `src/data/resume.js` | Education, experience, skills, certifications, languages |
-| `src/data/timeline.js` | Career Roadmap milestones (keep newest first!) |
+| `src/data/timeline.js` | Studies and jobs in the Home page journey timeline |
+| `src/data/heroImages.js` | Photos in the Home page carousel |
 
 Other things to replace:
 
-- `public/profile.svg` — placeholder avatar. Drop in your photo (e.g. `profile.jpg`) and update the `src` in `src/components/Navbar.jsx` and `src/pages/Home.jsx`.
+- `public/hero-*.jpg` — carousel photos. They are all exported at the same size (1000x1250, 4:5) with black bars where the original ratio didn't fit, so slides don't jump; the untouched originals are kept in `assets/originals/` (that folder is not deployed).
+- `public/logo.png` — the "CV" mark used as the favicon and in the navbar, tinted with the terracotta accent.
 - `public/cv.pdf` — placeholder PDF. Replace it with your real CV (keep the same file name).
 - Your name/links in `src/pages/Home.jsx`, `src/components/Navbar.jsx`, `src/components/Footer.jsx`, and the `<title>` in `index.html`.
 - Colors and fonts: everything is defined in `src/styles/variables.css`.
@@ -43,10 +45,10 @@ Other things to replace:
 
 ```
 src/
-├── components/   # Reusable pieces: Navbar, Footer, ProjectCard, TimelineItem
-├── pages/        # One file per page: Home, Projects, Resume, Roadmap
+├── components/   # Reusable pieces: Navbar, Footer, ProjectCard, Journey, HeroCarousel
+├── pages/        # One file per page: Home, Projects, ProjectDetail, Resume
 ├── data/         # YOUR CONTENT — edit these files
-├── hooks/        # useReveal (scroll-in animation)
+├── hooks/        # useReveal (scroll-in animation), useTheme (light/dark)
 ├── styles/       # variables.css (design tokens) + global.css
 ├── App.jsx       # Routes and shared layout
 └── main.jsx      # Entry point

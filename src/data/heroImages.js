@@ -1,9 +1,13 @@
 /**
  * HERO IMAGE LIBRARY
  * ------------------
- * Photos shown in the landing-page carousel. Add files under /public
- * (e.g. public/hero-2.jpg) and append an entry here — the carousel
- * autoplays through every image and supports arrow navigation.
+ * Photos shown in the landing-page carousel. The carousel autoplays
+ * through every image and supports arrow + dot navigation.
+ *
+ * All files are pre-processed to the SAME size (1000x1250, 4:5) with
+ * black bars added where the original aspect ratio didn't match, so
+ * slides never jump or crop differently. Originals live in
+ * assets/originals/ — re-export at 4:5 when adding a new photo.
  *
  * Fields:
  *   src - path relative to /public
@@ -11,10 +15,15 @@
  */
 export const heroImages = [
   {
-    src: 'profile.png',
+    src: 'hero-1.jpg',
     alt: 'Portrait of Attila Kiri',
   },
-  // Add more images below, for example:
-  // { src: 'hero-2.jpg', alt: 'Working on a robot in the lab' },
-  // { src: 'hero-3.jpg', alt: 'Field test with an autonomous vehicle' },
+  {
+    src: 'hero-2.jpg',
+    alt: 'Attila testing a mobile robot on a competition course at DTU',
+  },
+  {
+    src: 'hero-3.jpg',
+    alt: 'Attila with a megaphone hosting a student sports event',
+  },
 ]

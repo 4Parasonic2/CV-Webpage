@@ -10,10 +10,13 @@ import './Home.css'
  * Hero introduction, then the full career journey as a center-split
  * timeline: two colored lines down the middle with study bubbles on
  * the left and work bubbles on the right. Content from src/data/.
+ *
+ * The journey section itself is never wrapped in a reveal — only its
+ * individual entries animate, so the timeline is on screen from the
+ * moment the page loads.
  */
 export default function Home() {
   const heroRef = useReveal()
-  const journeyRef = useReveal()
 
   return (
     <div className="editorial">
@@ -45,7 +48,7 @@ export default function Home() {
         </section>
 
         {/* ---- Career journey timeline ---- */}
-        <section className="journey-section reveal" ref={journeyRef}>
+        <section className="journey-section">
           <h2 className="ed-section-heading">Journey</h2>
           <p className="journey-blurb">
             Studies on the left, work on the right — newest first.

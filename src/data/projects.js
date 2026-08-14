@@ -237,6 +237,78 @@ export const projects = [
     links: [],
   },
   {
+    slug: 'master-thesis',
+    title: 'Master Thesis',
+    description:
+      'MSc thesis in Autonomous Systems, taking a robotics research question from literature and theory through to implementation and experimental validation.',
+    tech: ['Autonomous Systems', 'Research', 'Control', 'Experiments', 'Python'],
+    github: null,
+    demo: null,
+    image: null,
+    longDescription: [
+      'The capstone of my Autonomous Systems MSc at the Technical University of Denmark: an independent research project scoping a robotics problem, reviewing the state of the art, and choosing a method that can be both implemented and tested.',
+      'The work spans the full research cycle — formulating the question, building the software and experimental setup, running experiments, and analysing the results critically against the theory and prior work before writing up and defending the findings.',
+    ],
+    learnings: [
+      'Scope an independent research question and position it against the state of the art.',
+      'Choose and justify methods appropriate to the problem and constraints.',
+      'Implement a research prototype and the tooling needed to evaluate it.',
+      'Design experiments and analyse results critically, including sources of error.',
+      'Document and defend the work to a technical audience.',
+    ],
+    sections: [
+      {
+        heading: 'What the project covers',
+        items: [
+          'Literature review and problem formulation',
+          'Method selection and system design',
+          'Implementation and experimental setup',
+          'Data collection, analysis and validation',
+          'Written thesis and oral defence',
+        ],
+      },
+    ],
+    gallery: [],
+    video: null,
+    links: [],
+  },
+  {
+    slug: 'bachelors-thesis',
+    title: 'Bachelors Thesis',
+    description:
+      'BSc thesis project: designing, building and testing a mobile robot end to end, from mechanics and electronics to state estimation and control on real hardware.',
+    tech: ['Mechatronics', 'Sensor Fusion', 'Control Theory', 'Embedded Systems', 'Hardware'],
+    github: null,
+    demo: null,
+    image: null,
+    longDescription: [
+      'My BSc thesis brought the whole mechatronics degree together in one build: a mobile robot designed, assembled and tested from scratch, where the mechanics, electronics, sensing and control all had to work as one system.',
+      'The core of the work was state estimation and control on real hardware — fusing sensor data into a usable estimate of the robot\u2019s state, tuning the control loop, and dealing with the noise, latency and mechanical imperfections that only show up once a robot leaves simulation.',
+    ],
+    learnings: [
+      'Take a mechatronic system from concept through build to a tested prototype.',
+      'Fuse sensor data into a reliable state estimate on embedded hardware.',
+      'Design and tune control loops, then validate them experimentally.',
+      'Diagnose faults across the mechanical, electrical and software layers.',
+      'Structure and write a full engineering thesis with reproducible results.',
+    ],
+    sections: [
+      {
+        heading: 'What the project covers',
+        items: [
+          'Mechanical and electronic design of the platform',
+          'Embedded software and sensor integration',
+          'Sensor fusion for state estimation',
+          'Control design, tuning and testing on hardware',
+          'Experimental evaluation and thesis write-up',
+        ],
+      },
+    ],
+    gallery: [],
+    video: null,
+    links: [],
+  },
+  {
     slug: 'x-tech-entrepreneurship',
     title: 'X Tech Entrepreneurship',
     description:

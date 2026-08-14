@@ -81,14 +81,14 @@
 
 /* ---- Dots: on the entry's own line, at the top of the bubble ----
    Line centers sit 5.5px either side of the exact middle; the 13px
-   dot is offset so its center lands exactly on its line. */
+   dot is offset so its center lands exactly on its line. Both tracks
+   use the same borderless bead so neither reads as outlined. */
 .journey-dot {
   position: absolute;
   top: 14px;
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  border: 2px solid var(--bg); /* small gap so it pops off the line */
 }
 
 .journey-study .journey-dot {

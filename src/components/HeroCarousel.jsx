@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { heroImages } from '../data/heroImages.js'
 import './HeroCarousel.css'
 
@@ -10,7 +10,7 @@ const AUTOPLAY_MS = 5000
  */
 export default function HeroCarousel() {
   const [index, setIndex] = useState(0)
-  const timerRef = useRef(null)
+  const [paused, setPaused] = useState(false)
   const count = heroImages.length
 
   const goTo = (next) => {
@@ -21,9 +21,11 @@ export default function HeroCarousel() {
   const prev = () => goTo(index - 1)
   const next = () => goTo(index + 1)
 
-  // Restart autoplay whenever the slide changes (or on mount)
+  // One timer, restarted whenever the slide changes so a manual jump
+  // gets a full interval. Depending on `paused` means hover/focus keeps
+  // it stopped instead of it silently restarting on the next slide.
   useEffect(() => {
-    if (count <= 1) return undefined
+    if (count <= 1 || paused) return undefined
 
     const prefersReduced =
       typeof window !== 'undefined' &&
@@ -31,23 +33,15 @@ export default function HeroCarousel() {
 
     if (prefersReduced) return undefined
 
-    clearInterval(timerRef.current)
-    timerRef.current = setInterval(() => {
+    const timer = setInterval(() => {
       setIndex((i) => (i + 1) % count)
     }, AUTOPLAY_MS)
 
-    return () => clearInterval(timerRef.current)
-  }, [index, count])
+    return () => clearInterval(timer)
+  }, [index, count, paused])
 
-  // Pause autoplay while the user focuses / hovers the carousel
-  const pause = () => clearInterval(timerRef.current)
-  const resume = () => {
-    if (count <= 1) return
-    clearInterval(timerRef.current)
-    timerRef.current = setInterval(() => {
-      setIndex((i) => (i + 1) % count)
-    }, AUTOPLAY_MS)
-  }
+  const pause = () => setPaused(true)
+  const resume = () => setPaused(false)
 
   if (count === 0) return null
 

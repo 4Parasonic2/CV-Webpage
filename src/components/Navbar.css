@@ -19,7 +19,7 @@
   height: 68px;
 }
 
-/* ---- Brand (avatar + name) ---- */
+/* ---- Brand (logo mark + name) ---- */
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -31,12 +31,10 @@
   color: var(--text);
 }
 
-.navbar-avatar {
-  width: 36px;
-  height: 36px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
+.navbar-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 /* ---- Links ---- */

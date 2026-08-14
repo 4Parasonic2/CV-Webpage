@@ -44,8 +44,9 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="container navbar-inner">
-        {/* Brand: avatar + name, links back to Home */}
+        {/* Brand: logo mark + name, links back to Home */}
         <NavLink to="/" className="navbar-brand">
+          <img src="logo.png" alt="" className="navbar-logo" width="28" height="28" />
           <span>ATTILA ISTVAN KIRI</span>
         </NavLink>
 

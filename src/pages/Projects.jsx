@@ -12,19 +12,8 @@ export default function Projects() {
   return (
     <div className="page container">
       <header className="projects-featured">
-        <div className="projects-bracket" aria-hidden="true">
-          <span className="projects-bracket-corner projects-bracket-corner--tl" />
-          <span className="projects-bracket-corner projects-bracket-corner--bl" />
-        </div>
-
-        <div className="projects-featured-copy">
-          <p className="projects-eyebrow">Portfolio</p>
-          <h1 className="projects-featured-title">Featured Projects</h1>
-          <p className="projects-featured-blurb">
-            A selection of things I&apos;ve built and worked on — robotics,
-            autonomy, perception, and entrepreneurship.
-          </p>
-        </div>
+        <p className="projects-eyebrow">Portfolio</p>
+        <h1 className="projects-featured-title">Featured Projects</h1>
       </header>
 
       <div className="projects-grid">
