@@ -100,7 +100,13 @@
   gap: var(--space-3);
 }
 
+/* Uniform tiles so mixed-ratio photos still line up in the grid;
+   `contain` keeps every image whole rather than cropping it. */
 .project-detail-gallery img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: var(--bg-elevated-2);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
 }

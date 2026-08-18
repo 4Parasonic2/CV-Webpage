@@ -8,7 +8,6 @@
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden; /* clips the image corners to the card radius */
   transition: transform var(--transition), border-color var(--transition),
     box-shadow var(--transition);
 }
@@ -17,35 +16,6 @@
   transform: translateY(-4px); /* subtle lift */
   border-color: var(--border-strong);
   box-shadow: var(--shadow-card);
-}
-
-/* ---- Screenshot / placeholder ---- */
-.project-image {
-  display: block; /* it's a <Link> (inline <a>): make it a block so aspect-ratio applies */
-  aspect-ratio: 16 / 9; /* consistent height across all cards */
-  background: var(--bg-elevated-2);
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.project-image-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  background:
-    radial-gradient(circle at 30% 30%, var(--accent-soft), transparent 60%),
-    var(--bg-elevated-2);
 }
 
 /* ---- Text content ---- */
@@ -74,6 +44,24 @@
   color: var(--text-muted);
   font-size: 0.95rem;
   flex: 1;
+}
+
+/* ---- Headline result ---- */
+.project-metric {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.project-metric-dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 /* ---- Tech tags ---- */

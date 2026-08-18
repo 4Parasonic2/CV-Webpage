@@ -20,5 +20,14 @@
 
 .footer-links {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-4);
+}
+
+/* Plain text, not a link — set in mono so it reads as an address */
+.footer-email {
+  font-family: var(--font-mono, monospace);
+  color: var(--text-muted);
+  user-select: all; /* one click selects the whole address to copy */
 }
