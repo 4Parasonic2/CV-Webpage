@@ -28,9 +28,7 @@ export default function Home() {
               Autonomous systems student <span className="ed-amp">&amp;</span> engineer
             </h1>
             <p className="ed-lead">
-              Designing bio-inspired control systems and software for robots
-              and unmanned vehicles — where neuroscience, control theory and
-              hands-on engineering meet.
+              I am Attila, an engineer in my last semester before finishing my master degree. I am currently residing in Copenhagen and working as a Student assistant but I am looking for job both in Denmark and internationally, if my profile fits your needs, then reach out to me.
             </p>
             <div className="ed-actions">
               <Link to="/projects" className="btn btn-primary">
@@ -51,9 +49,7 @@ export default function Home() {
         <section className="journey-section">
           <h2 className="ed-section-heading">Journey</h2>
           <p className="journey-blurb">
-            A time line from earliest to now. Studies on the left, work on
-            the right — the coloured lines run side by side when they
-            overlap, and break wherever there is a gap.
+            
           </p>
           <Journey />
         </section>
