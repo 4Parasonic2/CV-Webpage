@@ -51,7 +51,9 @@ export default function Home() {
         <section className="journey-section">
           <h2 className="ed-section-heading">Journey</h2>
           <p className="journey-blurb">
-            Studies on the left, work on the right — newest first.
+            A time line from earliest to now. Studies on the left, work on
+            the right — the coloured lines run side by side when they
+            overlap, and break wherever there is a gap.
           </p>
           <Journey />
         </section>

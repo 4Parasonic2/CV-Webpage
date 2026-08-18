@@ -1,107 +1,137 @@
 /* ============================================================
-   JOURNEY — center-split vertical timeline
+   JOURNEY — grey time axis with gapped study / work tracks
    ------------------------------------------------------------
-   Two colored lines run side by side down the CENTER:
-     left line  = studies (forest green / moss in dark mode)
-     right line = work (terracotta)
-   Study bubbles sit to the LEFT of the lines, work bubbles to
-   the RIGHT. Every bubble's dot sits on its own line, aligned
-   with the top of the bubble. Bubbles are free-height, so long
-   descriptions just grow the card. On mobile everything folds
-   into a single column with the lines on the left edge.
+   Desktop:  studies | study line | TIME | work line | work
+   Phones:   TIME | study line | work line | bubbles
+             (grey on the far left; both coloured lines to its right)
+
+   Coloured tracks follow the dates, not only their own cards. If a
+   study was still underway when a job started, the study line runs
+   through that job's row (and vice versa) so overlapping periods sit
+   as parallel lines. Cards sit at the top of their line; empty spine
+   rows keep the line's length so it still shows how long it lasted.
    ============================================================ */
 
-/* ---- Column headers naming the two sides ---- */
-.journey-heads {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-bottom: var(--space-4);
+.journey-wrap {
+  width: 100%;
 }
 
+.journey {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    13px
+    14px
+    3px
+    14px
+    13px
+    minmax(0, 1fr);
+  grid-template-rows: auto;
+  /* Empty spine rows (after a card moves up to the top of its line)
+     keep enough height that the coloured track still shows duration. */
+  grid-auto-rows: minmax(6.5rem, auto);
+  column-gap: 0;
+  row-gap: var(--space-4);
+  align-items: stretch;
+}
+
+/* Desktop: children occupy the study / work columns. Phones: stack. */
+.journey-lane {
+  display: contents;
+}
+
+/* ---- Column headers ---- */
 .journey-head {
-  text-align: center;
+  grid-row: 1;
   font-size: 0.78rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.16em;
+  padding-bottom: var(--space-1);
 }
 
-.journey-head-study {
+.journey-head--study {
+  grid-column: 1;
+  text-align: right;
   color: var(--track-study);
 }
 
-.journey-head-work {
+.journey-head--axis {
+  grid-column: 2 / 7;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.journey-head--work {
+  grid-column: 7;
+  text-align: left;
   color: var(--track-work);
 }
 
-/* ---- The list with the two center lines ---- */
-.journey {
-  position: relative;
-  list-style: none;
-}
-
-.journey::before,
-.journey::after {
-  content: '';
-  position: absolute;
-  top: 6px;
-  bottom: 6px;
+/* ---- The three vertical lines ---- */
+.journey-axis,
+.journey-track {
+  justify-self: center;
   width: 3px;
   border-radius: 2px;
+  /* Start at the bead (top: 14px + half the 13px dot) so a segment
+     begins on its first entry rather than the top of the row. */
+  margin-top: 20px;
 }
 
-/* Left center line: studies */
-.journey::before {
-  left: calc(50% - 7px);
+.journey-axis {
+  grid-column: 4;
+  background: var(--text-muted);
+  opacity: 0.45;
+}
+
+.journey-track--study {
+  grid-column: 2;
   background: var(--track-study);
   opacity: 0.75;
 }
 
-/* Right center line: work */
-.journey::after {
-  left: calc(50% + 4px);
+.journey-track--work {
+  grid-column: 6;
   background: var(--track-work);
   opacity: 0.75;
 }
 
-/* ---- Entries: studies left of the lines, work right ---- */
-.journey-entry {
-  position: relative;
-  width: calc(50% - 40px); /* leaves a 80px center channel for the lines */
-  margin-bottom: var(--space-4);
-}
-
-.journey-study {
-  margin-right: auto; /* pushes the bubble to the left half */
-}
-
-.journey-work {
-  margin-left: auto; /* pushes the bubble to the right half */
-}
-
-/* ---- Dots: on the entry's own line, at the top of the bubble ----
-   Line centers sit 5.5px either side of the exact middle; the 13px
-   dot is offset so its center lands exactly on its line. Both tracks
-   use the same borderless bead so neither reads as outlined. */
+/* ---- Beads, sitting on their own coloured line ---- */
 .journey-dot {
-  position: absolute;
-  top: 14px;
+  align-self: start;
+  justify-self: center;
   width: 13px;
   height: 13px;
+  margin-top: 14px;
   border-radius: 50%;
+  z-index: 1;
 }
 
-.journey-study .journey-dot {
-  right: -41px;
+.journey-dot--study {
+  grid-column: 2;
   background: var(--track-study);
 }
 
-.journey-work .journey-dot {
-  left: -41px;
+.journey-dot--work {
+  grid-column: 6;
   background: var(--track-work);
 }
 
 /* ---- Bubbles ---- */
+.journey-entry {
+  align-self: start;
+  min-width: 0;
+}
+
+.journey-study {
+  grid-column: 1;
+}
+
+.journey-work {
+  grid-column: 7;
+}
+
 .journey-card {
   padding: var(--space-3) var(--space-4);
   background: var(--bg-elevated);
@@ -124,7 +154,6 @@
   margin-bottom: var(--space-2);
 }
 
-/* Small colored label naming the track, matching its line color */
 .journey-kind {
   font-size: 0.72rem;
   font-weight: 600;
@@ -182,11 +211,10 @@
   padding: var(--space-3);
   background: var(--bg-elevated-2);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--track-study); /* ties it to the study line */
+  border-left: 3px solid var(--track-study);
   border-radius: var(--radius-sm);
 }
 
-/* Small chip marking the nested bubble as a trip within the study */
 .journey-sub-badge {
   font-size: 0.68rem;
   font-weight: 600;
@@ -209,40 +237,47 @@
 }
 
 /* ============================================================
-   MOBILE — single column, lines on the left edge
+   MOBILE — grey on the far left, both coloured lines to its right
    ============================================================ */
 @media (max-width: 720px) {
-  /* Side headers make no sense in one column; each bubble already
-     carries its own colored Studies/Work label */
-  .journey-heads {
+  .journey {
+    grid-template-columns:
+      3px
+      10px
+      13px
+      10px
+      13px
+      minmax(0, 1fr);
+  }
+
+  .journey-head {
     display: none;
   }
 
-  .journey::before {
-    left: 10px;
+  .journey-axis {
+    grid-column: 1;
   }
 
-  .journey::after {
-    left: 30px;
+  .journey-track--study,
+  .journey-dot--study {
+    grid-column: 3;
+  }
+
+  .journey-track--work,
+  .journey-dot--work {
+    grid-column: 5;
   }
 
   .journey-entry,
   .journey-study,
   .journey-work {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 64px; /* room for both lines + dot */
+    grid-column: 6;
   }
 
-  /* Dots move onto the left-edge lines (centers x=11.5 and x=31.5) */
-  .journey-study .journey-dot {
-    left: 5px;
-    right: auto;
-  }
-
-  .journey-work .journey-dot {
-    left: 25px;
-    right: auto;
+  .journey-lane {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    grid-column: 6;
   }
 }
